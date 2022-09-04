@@ -18,11 +18,17 @@ services:
       interval: 15s
       timeout: 5s
       retries: 6
-    entrypoint: sh -c "/tmp/prepare_database.sh"
     deploy:
       restart_policy:
         condition: on-failure
         delay: 5s
+
+  ubuntu:
+    container_name: ubuntu
+    image: ubuntu
+    volumes:
+      - './scripts/:/tmp'
+    entrypoint: sh -c "/tmp/prepare_database.sh"
 
   zookeeper:
     image: docker.io/bitnami/zookeeper:latest
