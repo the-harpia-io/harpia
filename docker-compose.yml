@@ -25,13 +25,16 @@ services:
   mysql-client:
     container_name: mysql-client
     image: imega/mysql-client:latest
+    depends_on:
+      - mariadb
     volumes:
       - './scripts/:/tmp'
     command: >
       sh -c "/tmp/prepare_database.sh"
-    depends_on:
-      mariadb:
-        condition: service_healthy
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 15s
 
   zookeeper:
     image: docker.io/bitnami/zookeeper:latest
