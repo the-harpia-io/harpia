@@ -118,6 +118,25 @@ services:
         condition: on-failure
         delay: 5s
 
+  harp-auto-test:
+    image: theharpia/harp-auto-test:v1.0.6
+    ports:
+      - "8081:8081"
+    environment:
+      - POD_NAME=harp-auto-test
+      - SERVICE_NAME=harp-auto-test
+      - SERVICE_NAMESPACE=harpia
+      - URL_PREFIX=/harp-auto-test
+      - NAMESPACE=harpia
+      - LOG_LEVEL=DEBUG
+      - PERIOD_RUN=60
+      - COLLECTOR=http://harp-collectors:8081/harp-collectors
+      - MAX_SCHEDULER_INSTANCES=2
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+
 
 volumes:
   mariadb_data:
