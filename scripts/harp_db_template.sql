@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.26, for macos11.3 (x86_64)
 --
--- Host: 127.0.0.1    Database: harp_dev
+-- Host: 127.0.0.1    Database: harpia_db
 -- ------------------------------------------------------
 -- Server version	5.5.5-10.5.6-MariaDB-log
 
@@ -16,12 +16,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `harp_dev`
+-- Current Database: `harpia_db`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `harp_dev` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `harpia_db` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 
-USE `harp_dev`;
+USE `harpia_db`;
 
 --
 -- Table structure for table `actions_history`

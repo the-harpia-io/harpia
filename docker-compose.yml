@@ -90,7 +90,7 @@ services:
       - DBPASS=harpia
       - DBHOST=mariadb
       - DBPORT=3306
-      - DBSCHEMA=harpia
+      - DBSCHEMA=harpia_db
       - ENVIRONMENTS_HOST=harp-environments:8081/harp-environments
       - BRIDGE_HOST=harp-bridge:8081/harp-bridge
       - SCENARIOS_HOST=http://harp-scenarios:8081/harp-scenarios/api/v1/scenarios
