@@ -23,9 +23,9 @@ services:
         condition: on-failure
         delay: 5s
 
-  ubuntu:
-    container_name: ubuntu
-    image: ubuntu
+  mysql-client:
+    container_name: mysql-client
+    image: imega/mysql-client:latest
     volumes:
       - './scripts/:/tmp'
     command: >
