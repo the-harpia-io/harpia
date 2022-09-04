@@ -29,9 +29,8 @@ services:
       - './scripts/:/tmp'
     command: >
       sh -c "/tmp/prepare_database.sh"
-    depends_on:
-      mariadb:
-        condition: service_completed_successfully
+    healthcheck:
+      test: mysqladmin ping -h mariadb -u harpia --password=harpia
 
   zookeeper:
     image: docker.io/bitnami/zookeeper:latest
