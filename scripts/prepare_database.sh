@@ -1,3 +1,5 @@
+echo "Wait for DB"
+sleep 10
 echo "Start preparing DB"
 mysql -h mariadb -u harpia -pharpia --execute="CREATE DATABASE IF NOT EXISTS harpia_db;"
 echo "DB was created"

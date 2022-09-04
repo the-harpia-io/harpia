@@ -28,7 +28,7 @@ services:
     volumes:
       - './scripts/:/tmp'
     command: >
-      sh -c "sleep 10 && /tmp/prepare_database.sh"
+      sh -c "/tmp/prepare_database.sh"
 
   zookeeper:
     image: docker.io/bitnami/zookeeper:latest
