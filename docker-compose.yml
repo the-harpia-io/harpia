@@ -80,8 +80,8 @@ services:
     environment:
       - POD_NAME=harp-actions
       - SERVICE_NAME=harp-actions
-      - SERVICE_NAMESPACE=harp
-      - URL_PREFIX=harp-actions
+      - SERVICE_NAMESPACE=harpia
+      - URL_PREFIX=/harp-actions
       - NAMESPACE=harpia
       - LOG_LEVEL=DEBUG
       - DBUSER=harpia
@@ -93,6 +93,26 @@ services:
       - BRIDGE_HOST=harp-bridge:8081/harp-bridge
       - SCENARIOS_HOST=http://harp-scenarios:8081/harp-scenarios/api/v1/scenarios
       - USERS_HOST=harp-users:8081/harp-users
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+
+  harp-collectors:
+    image: theharpia/harp-collectors:v2.0.3
+    ports:
+      - "8081:8081"
+    environment:
+      - POD_NAME=harp-collectors
+      - SERVICE_NAME=harp-collectors
+      - SERVICE_NAMESPACE=harpia
+      - URL_PREFIX=/harp-collectors
+      - NAMESPACE=harpia
+      - LOG_LEVEL=DEBUG
+      - KAFKA_SERVERS=kafka:9092
+      - EVENTS_TOPIC=collector-notifications
+      - CREATE_NOTIFICATION_ICINGA_TOPIC=create-notifications-icinga
+      - CREATE_NOTIFICATION_ZABBIX_TOPIC=create-notifications-zabbix
     deploy:
       restart_policy:
         condition: on-failure
