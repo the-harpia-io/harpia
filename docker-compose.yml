@@ -28,9 +28,7 @@ services:
     volumes:
       - './scripts/:/tmp'
     command: >
-      sh -c "/tmp/prepare_database.sh"
-    healthcheck:
-      test: mysqladmin ping -h mariadb -u harpia --password=harpia
+      sh -c "sleep 10 && /tmp/prepare_database.sh"
 
   zookeeper:
     image: docker.io/bitnami/zookeeper:latest
