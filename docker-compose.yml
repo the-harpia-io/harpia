@@ -7,7 +7,7 @@ services:
       - '3306:3306'
     volumes:
       - 'mariadb_data:/bitnami/mariadb'
-      - './scripts/:/bitnami/mariadb'
+      - './scripts/:/'
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
       - ALLOW_EMPTY_PASSWORD=yes
@@ -19,7 +19,7 @@ services:
       timeout: 5s
       retries: 6
     command: >
-      sh -c "/bitnami/mariadb/prepare_database.sh"
+      sh -c "/prepare_database.sh"
     deploy:
       restart_policy:
         condition: on-failure
