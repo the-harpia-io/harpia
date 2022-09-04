@@ -75,8 +75,8 @@ services:
 
   harp-actions:
     image: theharpia/harp-actions:v1.0.11
-    ports:
-      - "8081:8081"
+#    ports:
+#      - "8081:8081"
     environment:
       - POD_NAME=harp-actions
       - SERVICE_NAME=harp-actions
@@ -100,8 +100,8 @@ services:
 
   harp-collectors:
     image: theharpia/harp-collectors:v2.0.3
-    ports:
-      - "8081:8081"
+#    ports:
+#      - "8081:8081"
     environment:
       - POD_NAME=harp-collectors
       - SERVICE_NAME=harp-collectors
@@ -120,8 +120,8 @@ services:
 
   harp-auto-test:
     image: theharpia/harp-auto-test:v1.0.6
-    ports:
-      - "8081:8081"
+#    ports:
+#      - "8081:8081"
     environment:
       - POD_NAME=harp-auto-test
       - SERVICE_NAME=harp-auto-test
