@@ -1,4 +1,3 @@
-apt-get update && apt-get install -y default-mysql-client
 mysql -h mariadb -u harpia -pharpia --execute="CREATE DATABASE IF NOT EXISTS harpia;"
 mysql -h mariadb -u harpia -pharpia --execute="set global tx_isolation='read-committed';"
 mysql -h mariadb -u harpia -pharpia --execute="CREATE USER IF NOT EXISTS 'harpia'@'%' IDENTIFIED BY 'harpia'; GRANT ALL PRIVILEGES ON *.* TO 'harpia'@'%';"

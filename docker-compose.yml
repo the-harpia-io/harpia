@@ -28,7 +28,8 @@ services:
     image: ubuntu
     volumes:
       - './scripts/:/tmp'
-    entrypoint: sh -c "/tmp/prepare_database.sh"
+    command: >
+      sh -c "apt-get update && apt-get install -y default-mysql-client && /tmp/prepare_database.sh"
 
   zookeeper:
     image: docker.io/bitnami/zookeeper:latest
