@@ -1,0 +1,105 @@
+version: '3.9'
+
+services:
+  mariadb:
+    image: docker.io/bitnami/mariadb:latest
+    ports:
+      - '3306:3306'
+    volumes:
+      - 'mariadb_data:/bitnami/mariadb'
+      - './scripts/:/bitnami/mariadb'
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_ROOT_USER=harpia
+      - MARIADB_ROOT_PASSWORD=harpia
+    healthcheck:
+      test: ['CMD', '/opt/bitnami/scripts/mariadb/healthcheck.sh']
+      interval: 15s
+      timeout: 5s
+      retries: 6
+    command: >
+      sh -c "/bitnami/mariadb/prepare_database.sh"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+
+  zookeeper:
+    image: docker.io/bitnami/zookeeper:latest
+    ports:
+      - "2181:2181"
+    volumes:
+      - "zookeeper_data:/bitnami"
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+
+  kafka:
+    image: docker.io/bitnami/kafka:latest
+    ports:
+      - "9092:9092"
+    volumes:
+      - "kafka_data:/bitnami"
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    depends_on:
+      - zookeeper
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+
+  aerspike:
+    image: aerospike/aerospike-server:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - NAMESPACE=harpia
+      - MEM_GB=1
+      - STORAGE_DB=1
+      - AGENT_LOG_LEVEL=warn
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+
+  harp-actions:
+    image: theharpia/harp-actions:v1.0.11
+    ports:
+      - "8081:8081"
+    environment:
+      - POD_NAME=harp-actions
+      - SERVICE_NAME=harp-actions
+      - SERVICE_NAMESPACE=harp
+      - URL_PREFIX=harp-actions
+      - NAMESPACE=harpia
+      - LOG_LEVEL=DEBUG
+      - DBUSER=harpia
+      - DBPASS=harpia
+      - DBHOST=mariadb
+      - DBPORT=3306
+      - DBSCHEMA=harpia
+      - ENVIRONMENTS_HOST=harp-environments:8081/harp-environments
+      - BRIDGE_HOST=harp-bridge:8081/harp-bridge
+      - SCENARIOS_HOST=http://harp-scenarios:8081/harp-scenarios/api/v1/scenarios
+      - USERS_HOST=harp-users:8081/harp-users
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+
+
+volumes:
+  mariadb_data:
+    driver: local
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local
+  aerospike_data:
+    driver: local
