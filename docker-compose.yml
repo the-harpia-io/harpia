@@ -19,7 +19,7 @@ services:
       timeout: 5s
       retries: 6
     command: >
-      sh -c "chmod +x && /tmp/prepare_database.sh"
+      sh -c "chmod +x /tmp/prepare_database.sh && /tmp/prepare_database.sh"
     deploy:
       restart_policy:
         condition: on-failure
