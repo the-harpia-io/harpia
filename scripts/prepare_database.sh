@@ -2,7 +2,7 @@ echo "Wait for DB"
 sleep 10
 echo "Start preparing DB"
 
-RESULT=`mysqlshow -h mariadb --user=harpia --password=pharpia harpia_db| grep -v Wildcard | grep -o harpia_db`
+RESULT=`mysqlshow -h mariadb --user=harpia --password=harpia harpia_db| grep -v Wildcard | grep -o harpia_db`
 if [ "$RESULT" == "harpia_db" ]; then
   mysql -h mariadb -u harpia -pharpia --execute="CREATE DATABASE IF NOT EXISTS harpia_db;"
   echo "DB was created"
