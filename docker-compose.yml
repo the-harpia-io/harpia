@@ -142,6 +142,7 @@ services:
       - DATABASE_SERVER=mariadb
       - DATABASE_USER=harpia
       - DATABASE_PSWD=harpia
+      - DATABASE_SCHEMA=harpia_db
 
       - POD_NAME=harp-environments
       - SERVICE_NAME=harp-environments
@@ -169,6 +170,7 @@ services:
       - DATABASE_SERVER=mariadb
       - DATABASE_USER=harpia
       - DATABASE_PSWD=harpia
+      - DATABASE_SCHEMA=harpia_db
 
       - AEROSPIKE_HOST=aerospike
       - AEROSPIKE_PORT=3000
@@ -241,6 +243,7 @@ services:
       - DATABASE_SERVER=mariadb
       - DATABASE_USER=harpia
       - DATABASE_PSWD=harpia
+      - DATABASE_SCHEMA=harpia_db
 
       - AEROSPIKE_HOST=aerospike
       - AEROSPIKE_PORT=3000
@@ -276,6 +279,7 @@ services:
       - DATABASE_SERVER=mariadb
       - DATABASE_USER=harpia
       - DATABASE_PSWD=harpia
+      - DATABASE_SCHEMA=harpia_db
 
       - POD_NAME=harp-licenses
       - SERVICE_NAME=harp-licenses
@@ -298,6 +302,7 @@ services:
       - DBHOST=mariadb
       - DBUSER=harpia
       - DBPASS=harpia
+      - DBSCHEMA=harpia_db
 
       - POD_NAME=harp-aggregator
       - SERVICE_NAME=harp-aggregator
@@ -357,6 +362,7 @@ services:
       - DATABASE_SERVER=mariadb
       - DATABASE_USER=harpia
       - DATABASE_PSWD=harpia
+      - DATABASE_SCHEMA=harpia_db
     deploy:
       restart_policy:
         condition: on-failure
@@ -439,6 +445,7 @@ services:
       - DATABASE_SERVER=mariadb
       - DATABASE_USER=harpia
       - DATABASE_PSWD=harpia
+      - DATABASE_SCHEMA=harpia_db
     deploy:
       restart_policy:
         condition: on-failure
@@ -461,6 +468,7 @@ services:
       - DATABASE_SERVER=mariadb
       - DATABASE_USER=harpia
       - DATABASE_PSWD=harpia
+      - DATABASE_SCHEMA=harpia_db
 
       - KAFKA_SERVERS=kafka:9092
       - NOTIFICATIONS_DECORATED_TOPIC=collector-notifications-decorated
@@ -496,12 +504,12 @@ services:
       volumes:
           - ./configs/nginx/nginx.conf:/etc/nginx/nginx.conf
 
-  certbot:
-    image: certbot/certbot
-    volumes:
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
-    command: certonly --webroot -w /var/www/certbot --force-renewal --email the.harpia.io@gmail.com -d harpia.io --agree-tos
+#  certbot:
+#    image: certbot/certbot
+#    volumes:
+#      - ./certbot/conf:/etc/letsencrypt
+#      - ./certbot/www:/var/www/certbot
+#    command: certonly --webroot -w /var/www/certbot --force-renewal --email the.harpia.io@gmail.com -d harpia.io --agree-tos
 
 volumes:
   mariadb_data:
