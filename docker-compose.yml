@@ -3,8 +3,6 @@ version: '3.9'
 services:
   mariadb:
     image: docker.io/bitnami/mariadb:latest
-    ports:
-      - '3306:3306'
     volumes:
       - 'mariadb_data:/bitnami/mariadb'
     environment:
@@ -32,8 +30,6 @@ services:
 
   zookeeper:
     image: docker.io/bitnami/zookeeper:latest
-    ports:
-      - "2181:2181"
     volumes:
       - "zookeeper_data:/bitnami"
     environment:
@@ -45,8 +41,6 @@ services:
 
   kafka:
     image: docker.io/bitnami/kafka:latest
-    ports:
-      - "9092:9092"
     volumes:
       - "kafka_data:/bitnami"
     environment:
@@ -61,8 +55,6 @@ services:
 
   aerspike:
     image: aerospike/aerospike-server:latest
-    ports:
-      - "3000:3000"
     environment:
       - NAMESPACE=harpia
       - MEM_GB=1
@@ -75,8 +67,6 @@ services:
 
   harp-actions:
     image: theharpia/harp-actions:v1.0.11
-#    ports:
-#      - "8081:8081"
     environment:
       - POD_NAME=harp-actions
       - SERVICE_NAME=harp-actions
@@ -97,11 +87,10 @@ services:
       restart_policy:
         condition: on-failure
         delay: 5s
+    pull_policy: always
 
   harp-collectors:
     image: theharpia/harp-collectors:v2.0.3
-#    ports:
-#      - "8081:8081"
     environment:
       - POD_NAME=harp-collectors
       - SERVICE_NAME=harp-collectors
@@ -117,11 +106,10 @@ services:
       restart_policy:
         condition: on-failure
         delay: 5s
+    pull_policy: always
 
   harp-auto-test:
     image: theharpia/harp-auto-test:v1.0.7
-#    ports:
-#      - "8081:8081"
     environment:
       - POD_NAME=harp-auto-test
       - SERVICE_NAME=harp-auto-test
@@ -136,6 +124,7 @@ services:
       restart_policy:
         condition: on-failure
         delay: 5s
+    pull_policy: always
 
 
 volumes:
