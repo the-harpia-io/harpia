@@ -419,8 +419,8 @@ services:
     image: theharpia/harp-ui:v1.0.1
     environment:
       - POD_NAME=harp-ui
-      - DOMAIN=app.harpia.io
-      - GRAFANA_REPORTS=https://grafana-prod.harpia.io
+      - DOMAIN=167.235.143.177
+      - GRAFANA_REPORTS=http://167.235.143.177/grafana
       - NAMESPACE=harpia
       - SHOW_SIDE_PANEL=true
     deploy:
