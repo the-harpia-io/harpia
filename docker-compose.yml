@@ -19,8 +19,6 @@ services:
       restart_policy:
         condition: on-failure
         delay: 15s
-    networks:
-      - harpia
 
   mysql-client:
     container_name: mysql-client
@@ -29,8 +27,6 @@ services:
       - './scripts/:/tmp'
     command: >
       sh -c "/tmp/prepare_database.sh"
-    networks:
-      - harpia
 
   zookeeper:
     image: docker.io/bitnami/zookeeper:latest
@@ -42,8 +38,6 @@ services:
       restart_policy:
         condition: on-failure
         delay: 5s
-    networks:
-      - harpia
 
   kafka:
     image: docker.io/bitnami/kafka:latest
@@ -58,8 +52,6 @@ services:
       restart_policy:
         condition: on-failure
         delay: 5s
-    networks:
-      - harpia
 
   aerspike:
     image: aerospike/aerospike-server:latest
@@ -72,8 +64,6 @@ services:
       restart_policy:
         condition: on-failure
         delay: 5s
-    networks:
-      - harpia
 
   harp-actions:
     image: theharpia/harp-actions:v1.0.11
@@ -100,8 +90,6 @@ services:
         condition: on-failure
         delay: 5s
     pull_policy: always
-    networks:
-      - harpia
 
   harp-collectors:
     image: theharpia/harp-collectors:v2.0.3
@@ -123,8 +111,6 @@ services:
         condition: on-failure
         delay: 5s
     pull_policy: always
-    networks:
-      - harpia
 
   harp-auto-test:
     image: theharpia/harp-auto-test:v1.0.7
@@ -145,16 +131,12 @@ services:
         condition: on-failure
         delay: 5s
     pull_policy: always
-    networks:
-      - harpia
 
   loki:
     image: grafana/loki:latest
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
-    networks:
-      - harpia
     volumes:
       - "grafana_data:/data/loki"
 
@@ -163,8 +145,6 @@ services:
     volumes:
       - /var/log:/var/log
     command: -config.file=/etc/promtail/config.yml
-    networks:
-      - harpia
 
   grafana:
     image: grafana/grafana:latest
@@ -172,8 +152,6 @@ services:
       - "grafana_data:/var/lib/grafana"
     ports:
       - "3000:3000"
-    networks:
-      - harpia
 
 volumes:
   mariadb_data:
