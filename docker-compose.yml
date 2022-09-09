@@ -206,7 +206,7 @@ services:
       - JIRA_HOST=''
       - JIRA_USER=''
       - JIRA_PASS=''
-      - JIRA_TIMEOUT=''
+      - JIRA_TIMEOUT=15
       - JIRA_TEMP_FILES=''
 
       - SKYPE_ACTIVE=false
