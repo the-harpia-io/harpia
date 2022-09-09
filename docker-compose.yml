@@ -419,7 +419,7 @@ services:
     image: theharpia/harp-ui:v1.0.1
     environment:
       - POD_NAME=harp-ui
-      - DOMAIN=167.235.143.177
+      - DOMAIN=http://167.235.143.177
       - GRAFANA_REPORTS=http://167.235.143.177/grafana
       - NAMESPACE=harpia
       - SHOW_SIDE_PANEL=true
