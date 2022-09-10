@@ -12,7 +12,7 @@ datasources:
     access: proxy
     orgId: 1
     url: http://victoriametrics:8428
-    uid: victoria_metrics
+    uid: prometheus
     basicAuth: false
     isDefault: true
     version: 1
