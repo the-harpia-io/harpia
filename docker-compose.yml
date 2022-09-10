@@ -438,6 +438,8 @@ services:
       - GRAFANA_REPORTS=https://playground.harpia.io/grafana
       - NAMESPACE=harpia
       - SHOW_SIDE_PANEL=true
+      - DEMO_EMAIL=harp-demo@harpia.io
+      - DEMO_PASSWORD=Harp-p1@yground
     deploy:
       restart_policy:
         condition: on-failure
