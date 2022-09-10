@@ -519,21 +519,32 @@ services:
     image: grafana/grafana:latest
     volumes:
       - "grafana_data:/var/lib/grafana"
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
     environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=harpia_2022
       - GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s:%(http_port)s/grafana/
       - GF_SERVER_DOMAIN=167.235.143.177
-      - GF_SERVER_SERVE_FROM_SUB_PATH="true"
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true
       - GF_DATABASE_TYPE=mysql
       - GF_DATABASE_HOST=mariadb
       - GF_DATABASE_NAME=grafana
       - GF_DATABASE_USER=grafana
       - GF_DATABASE_PASSWORD=grafana
-      - GF_SECURITY_ALLOW_EMBEDDING="true"
-      - GF_AUTH_ANONYMOUS_ENABLED="true"
+      - GF_SECURITY_ALLOW_EMBEDDING=true
+      - GF_AUTH_ANONYMOUS_ENABLED=tru"
+      - GF_ALERTING_ENABLED=true
+      - GF_UNIFIED_ALERTING_ENABLED=true
+      - GF_INSTALL_PLUGINS=natel-discrete-panel
     deploy:
       restart_policy:
         condition: on-failure
         delay: 5s
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
     pull_policy: always
 
   prometheus:
