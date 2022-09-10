@@ -533,7 +533,7 @@ services:
       - GF_DATABASE_USER=grafana
       - GF_DATABASE_PASSWORD=grafana
       - GF_SECURITY_ALLOW_EMBEDDING=true
-      - GF_AUTH_ANONYMOUS_ENABLED=tru"
+      - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_ALERTING_ENABLED=false
       - GF_UNIFIED_ALERTING_ENABLED=true
       - GF_INSTALL_PLUGINS=natel-discrete-panel
