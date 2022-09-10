@@ -277,7 +277,7 @@ services:
       - SMTP_HOST=smtp.gmail.com
       - SMTP_PORT=465
       - SMTP_USER=harp.notifications@gmail.com
-      - SMTP_PASS=Alyan2757622@
+      - SMTP_PASS=lekhsbkjyzbdrqer
     deploy:
       restart_policy:
         condition: on-failure
