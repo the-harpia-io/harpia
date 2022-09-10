@@ -516,7 +516,7 @@ services:
     pull_policy: always
 
   grafana:
-    image: grafana/grafana:v8.5.1
+    image: grafana/grafana:8.5.1
     volumes:
       - "grafana_data:/var/lib/grafana"
       - ./configs/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
