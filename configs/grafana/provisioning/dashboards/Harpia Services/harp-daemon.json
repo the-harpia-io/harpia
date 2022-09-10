@@ -276,7 +276,7 @@
       "pluginVersion": "7.5.3",
       "targets": [
         {
-          "expr": "sum by (service, severity, namespace) (count_over_time({service=\"harp-daemon\",severity=~\"error|critical\"}[1m]))",
+          "expr": "sum by (service, severity, namespace) (count_over_time({job=\"harp-daemon\",severity=~\"error|critical\"}[1m]))",
           "refId": "A"
         }
       ],
@@ -313,7 +313,7 @@
       "pluginVersion": "7.5.3",
       "targets": [
         {
-          "expr": "{service=\"harp-daemon\",severity=~\"error|critical\"}",
+          "expr": "{job=\"harp-daemon\",severity=~\"error|critical\"}",
           "refId": "A"
         }
       ],
@@ -1058,7 +1058,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "rate(total_notification_processor_latency_seconds_count{service=\"harp-daemon\"}[1m])",
+          "expr": "rate(total_notification_processor_latency_seconds_count{job=\"harp-daemon\"}[1m])",
           "interval": "",
           "legendFormat": "{{pod}}",
           "refId": "A"
@@ -1186,7 +1186,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "rate(total_notification_processor_latency_seconds_sum{service=\"harp-daemon\"}[1m]) /\nrate(total_notification_processor_latency_seconds_count{service=\"harp-daemon\"}[1m])",
+          "expr": "rate(total_notification_processor_latency_seconds_sum{job=\"harp-daemon\"}[1m]) /\nrate(total_notification_processor_latency_seconds_count{job=\"harp-daemon\"}[1m])",
           "interval": "",
           "legendFormat": "{{pod}}",
           "refId": "A"
@@ -1284,14 +1284,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(ui_create_notification_latency_seconds_count{service=\"harp-daemon\"}[1m]))",
+          "expr": "sum(rate(ui_create_notification_latency_seconds_count{job=\"harp-daemon\"}[1m]))",
           "interval": "",
           "legendFormat": "Create",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(ui_update_notification_latency_seconds_count{service=\"harp-daemon\"}[1m]))",
+          "expr": "sum(rate(ui_update_notification_latency_seconds_count{job=\"harp-daemon\"}[1m]))",
           "hide": false,
           "interval": "",
           "legendFormat": "Update",
@@ -1299,7 +1299,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(ui_resubmit_notification_latency_seconds_count{service=\"harp-daemon\"}[1m]))",
+          "expr": "sum(rate(ui_resubmit_notification_latency_seconds_count{job=\"harp-daemon\"}[1m]))",
           "hide": false,
           "interval": "",
           "legendFormat": "Resubmit",
@@ -1307,7 +1307,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(ui_close_notification_latency_seconds_count{service=\"harp-daemon\"}[1m]))",
+          "expr": "sum(rate(ui_close_notification_latency_seconds_count{job=\"harp-daemon\"}[1m]))",
           "hide": false,
           "interval": "",
           "legendFormat": "Close",
@@ -1436,14 +1436,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(ui_create_notification_latency_seconds_sum{service=\"harp-daemon\"}[1m])) /\nsum(rate(ui_create_notification_latency_seconds_count{service=\"harp-daemon\"}[1m]))",
+          "expr": "sum(rate(ui_create_notification_latency_seconds_sum{job=\"harp-daemon\"}[1m])) /\nsum(rate(ui_create_notification_latency_seconds_count{job=\"harp-daemon\"}[1m]))",
           "interval": "",
           "legendFormat": "Create",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(ui_update_notification_latency_seconds_sum{service=\"harp-daemon\"}[1m])) /\nsum(rate(ui_update_notification_latency_seconds_count{service=\"harp-daemon\"}[1m]))",
+          "expr": "sum(rate(ui_update_notification_latency_seconds_sum{job=\"harp-daemon\"}[1m])) /\nsum(rate(ui_update_notification_latency_seconds_count{job=\"harp-daemon\"}[1m]))",
           "hide": false,
           "interval": "",
           "legendFormat": "Update",
@@ -1451,7 +1451,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(ui_resubmit_notification_latency_seconds_sum{service=\"harp-daemon\"}[1m])) /\nsum(rate(ui_resubmit_notification_latency_seconds_count{service=\"harp-daemon\"}[1m]))",
+          "expr": "sum(rate(ui_resubmit_notification_latency_seconds_sum{job=\"harp-daemon\"}[1m])) /\nsum(rate(ui_resubmit_notification_latency_seconds_count{job=\"harp-daemon\"}[1m]))",
           "hide": false,
           "interval": "",
           "legendFormat": "Resubmit",
@@ -1459,7 +1459,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(ui_close_notification_latency_seconds_sum{service=\"harp-daemon\"}[1m])) /\nsum(rate(ui_close_notification_latency_seconds_count{service=\"harp-daemon\"}[1m]))",
+          "expr": "sum(rate(ui_close_notification_latency_seconds_sum{job=\"harp-daemon\"}[1m])) /\nsum(rate(ui_close_notification_latency_seconds_count{job=\"harp-daemon\"}[1m]))",
           "hide": false,
           "interval": "",
           "legendFormat": "Close",
@@ -1558,14 +1558,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(email_create_notification_latency_seconds_count{service=\"harp-daemon\"}[1m]))",
+          "expr": "sum(rate(email_create_notification_latency_seconds_count{job=\"harp-daemon\"}[1m]))",
           "interval": "",
           "legendFormat": "Create",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(email_update_notification_latency_seconds_count{service=\"harp-daemon\"}[1m]))",
+          "expr": "sum(rate(email_update_notification_latency_seconds_count{job=\"harp-daemon\"}[1m]))",
           "hide": false,
           "interval": "",
           "legendFormat": "Update",
@@ -1573,7 +1573,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(email_resubmit_notification_latency_seconds_count{service=\"harp-daemon\"}[1m]))",
+          "expr": "sum(rate(email_resubmit_notification_latency_seconds_count{job=\"harp-daemon\"}[1m]))",
           "hide": false,
           "interval": "",
           "legendFormat": "Resubmit",
@@ -1581,7 +1581,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(email_close_notification_latency_seconds_count{service=\"harp-daemon\"}[1m]))",
+          "expr": "sum(rate(email_close_notification_latency_seconds_count{job=\"harp-daemon\"}[1m]))",
           "hide": false,
           "interval": "",
           "legendFormat": "Close",
@@ -1710,14 +1710,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(email_create_notification_latency_seconds_sum{service=\"harp-daemon\"}[1m])) /\nsum(rate(email_create_notification_latency_seconds_count{service=\"harp-daemon\"}[1m]))",
+          "expr": "sum(rate(email_create_notification_latency_seconds_sum{job=\"harp-daemon\"}[1m])) /\nsum(rate(email_create_notification_latency_seconds_count{job=\"harp-daemon\"}[1m]))",
           "interval": "",
           "legendFormat": "Create",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(email_update_notification_latency_seconds_sum{service=\"harp-daemon\"}[1m])) /\nsum(rate(email_update_notification_latency_seconds_count{service=\"harp-daemon\"}[1m]))",
+          "expr": "sum(rate(email_update_notification_latency_seconds_sum{job=\"harp-daemon\"}[1m])) /\nsum(rate(email_update_notification_latency_seconds_count{job=\"harp-daemon\"}[1m]))",
           "hide": false,
           "interval": "",
           "legendFormat": "Update",
@@ -1725,7 +1725,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(email_resubmit_notification_latency_seconds_sum{service=\"harp-daemon\"}[1m])) /\nsum(rate(email_resubmit_notification_latency_seconds_count{service=\"harp-daemon\"}[1m]))",
+          "expr": "sum(rate(email_resubmit_notification_latency_seconds_sum{job=\"harp-daemon\"}[1m])) /\nsum(rate(email_resubmit_notification_latency_seconds_count{job=\"harp-daemon\"}[1m]))",
           "hide": false,
           "interval": "",
           "legendFormat": "Resubmit",
@@ -1733,7 +1733,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(email_close_notification_latency_seconds_sum{service=\"harp-daemon\"}[1m])) /\nsum(rate(email_close_notification_latency_seconds_count{service=\"harp-daemon\"}[1m]))",
+          "expr": "sum(rate(email_close_notification_latency_seconds_sum{job=\"harp-daemon\"}[1m])) /\nsum(rate(email_close_notification_latency_seconds_count{job=\"harp-daemon\"}[1m]))",
           "hide": false,
           "interval": "",
           "legendFormat": "Close",
@@ -1831,14 +1831,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(jira_create_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(jira_create_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "interval": "",
           "legendFormat": "Create",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(jira_update_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(jira_update_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Update",
@@ -1846,7 +1846,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(jira_resubmit_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(jira_resubmit_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Resubmit",
@@ -1854,7 +1854,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(jira_close_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(jira_close_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Close",
@@ -1947,14 +1947,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(jira_create_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(jira_create_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(jira_create_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(jira_create_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "interval": "",
           "legendFormat": "Create",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(jira_update_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(jira_update_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(jira_update_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(jira_update_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Update",
@@ -1962,7 +1962,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(jira_resubmit_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(jira_resubmit_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(jira_resubmit_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(jira_resubmit_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Resubmit",
@@ -1970,7 +1970,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(jira_close_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(jira_close_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(jira_close_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(jira_close_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Close",
@@ -2060,14 +2060,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(pd_create_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(pd_create_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "interval": "",
           "legendFormat": "Create",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(pd_update_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(pd_update_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Update",
@@ -2075,7 +2075,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(pd_resubmit_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(pd_resubmit_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Resubmit",
@@ -2083,7 +2083,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(pd_close_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(pd_close_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Close",
@@ -2176,14 +2176,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(pd_create_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(pd_create_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(pd_create_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(pd_create_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "interval": "",
           "legendFormat": "Create",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(pd_update_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(pd_update_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(pd_update_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(pd_update_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Update",
@@ -2191,7 +2191,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(pd_resubmit_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(pd_resubmit_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(pd_resubmit_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(pd_resubmit_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Resubmit",
@@ -2199,7 +2199,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(pd_close_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(pd_close_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(pd_close_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(pd_close_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Close",
@@ -2289,14 +2289,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(skype_create_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(skype_create_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "interval": "",
           "legendFormat": "Create",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(skype_update_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(skype_update_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Update",
@@ -2304,7 +2304,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(skype_resubmit_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(skype_resubmit_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Resubmit",
@@ -2312,7 +2312,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(skype_close_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(skype_close_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Close",
@@ -2405,14 +2405,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(skype_create_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(skype_create_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(skype_create_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(skype_create_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "interval": "",
           "legendFormat": "Create",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(skype_update_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(skype_update_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(skype_update_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(skype_update_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Update",
@@ -2420,7 +2420,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(skype_resubmit_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(skype_resubmit_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(skype_resubmit_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(skype_resubmit_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Resubmit",
@@ -2428,7 +2428,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(skype_close_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(skype_close_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(skype_close_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(skype_close_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Close",
@@ -2518,14 +2518,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(sms_create_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(sms_create_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "interval": "",
           "legendFormat": "Create",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(sms_update_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(sms_update_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Update",
@@ -2533,7 +2533,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(sms_resubmit_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(sms_resubmit_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Resubmit",
@@ -2541,7 +2541,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(sms_close_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(sms_close_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Close",
@@ -2634,14 +2634,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(sms_create_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(sms_create_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(sms_create_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(sms_create_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "interval": "",
           "legendFormat": "Create",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(sms_update_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(sms_update_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(sms_update_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(sms_update_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Update",
@@ -2649,7 +2649,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(sms_resubmit_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(sms_resubmit_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(sms_resubmit_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(sms_resubmit_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Resubmit",
@@ -2657,7 +2657,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(sms_close_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(sms_close_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(sms_close_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(sms_close_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Close",
@@ -2747,14 +2747,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(teams_create_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(teams_create_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "interval": "",
           "legendFormat": "Create",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(teams_update_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(teams_update_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Update",
@@ -2762,7 +2762,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(teams_resubmit_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(teams_resubmit_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Resubmit",
@@ -2770,7 +2770,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(teams_close_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(teams_close_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Close",
@@ -2863,14 +2863,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(teams_create_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(teams_create_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(teams_create_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(teams_create_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "interval": "",
           "legendFormat": "Create",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(teams_update_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(teams_update_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(teams_update_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(teams_update_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Update",
@@ -2878,7 +2878,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(teams_resubmit_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(teams_resubmit_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(teams_resubmit_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(teams_resubmit_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Resubmit",
@@ -2886,7 +2886,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(teams_close_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(teams_close_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(teams_close_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(teams_close_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Close",
@@ -2976,14 +2976,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(telegram_create_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(telegram_create_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "interval": "",
           "legendFormat": "Create",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(telegram_update_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(telegram_update_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Update",
@@ -2991,7 +2991,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(telegram_resubmit_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(telegram_resubmit_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Resubmit",
@@ -2999,7 +2999,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(telegram_close_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(telegram_close_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Close",
@@ -3092,14 +3092,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(telegram_create_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(telegram_create_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(telegram_create_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(telegram_create_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "interval": "",
           "legendFormat": "Create",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(telegram_update_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(telegram_update_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(telegram_update_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(telegram_update_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Update",
@@ -3107,7 +3107,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(telegram_resubmit_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(telegram_resubmit_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(telegram_resubmit_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(telegram_resubmit_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Resubmit",
@@ -3115,7 +3115,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(telegram_close_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(telegram_close_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(telegram_close_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(telegram_close_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Close",
@@ -3205,14 +3205,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(voice_create_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(voice_create_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "interval": "",
           "legendFormat": "Create",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(voice_update_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(voice_update_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Update",
@@ -3220,7 +3220,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(voice_resubmit_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(voice_resubmit_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Resubmit",
@@ -3228,7 +3228,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(voice_close_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(voice_close_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Close",
@@ -3321,14 +3321,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(voice_create_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(voice_create_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(voice_create_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(voice_create_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "interval": "",
           "legendFormat": "Create",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(voice_update_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(voice_update_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(voice_update_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(voice_update_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Update",
@@ -3336,7 +3336,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(voice_resubmit_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(voice_resubmit_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(voice_resubmit_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(voice_resubmit_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Resubmit",
@@ -3344,7 +3344,7 @@
         },
         {
           "exemplar": true,
-          "expr": "sum(rate(voice_close_notification_latency_seconds_sum{service=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(voice_close_notification_latency_seconds_count{service=\"harp-daemon\"}[$Interval])) * 60",
+          "expr": "sum(rate(voice_close_notification_latency_seconds_sum{job=\"harp-daemon\"}[$Interval])) * 60 /\nsum(rate(voice_close_notification_latency_seconds_count{job=\"harp-daemon\"}[$Interval])) * 60",
           "hide": false,
           "interval": "",
           "legendFormat": "Close",
@@ -3481,7 +3481,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(flask_http_request_duration_seconds_count{status!=\"200\", service=\"harp-daemon\"}[1m])",
+              "expr": "rate(flask_http_request_duration_seconds_count{status!=\"200\", job=\"harp-daemon\"}[1m])",
               "interval": "",
               "legendFormat": "{{pod}}: {{method}} - {{path}}",
               "refId": "A"
@@ -3578,7 +3578,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(flask_http_request_duration_seconds_count{method=\"GET\",status=\"200\", service=\"harp-daemon\"}[1m:15s])",
+              "expr": "rate(flask_http_request_duration_seconds_count{method=\"GET\",status=\"200\", job=\"harp-daemon\"}[1m:15s])",
               "interval": "",
               "legendFormat": "{{path}}",
               "refId": "A"
@@ -3667,7 +3667,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(flask_http_request_duration_seconds_sum{method=\"GET\",status=\"200\", service=\"harp-daemon\"}[1m]) /\nrate(flask_http_request_duration_seconds_count{method=\"GET\",status=\"200\", service=\"harp-daemon\"}[1m])",
+              "expr": "rate(flask_http_request_duration_seconds_sum{method=\"GET\",status=\"200\", job=\"harp-daemon\"}[1m]) /\nrate(flask_http_request_duration_seconds_count{method=\"GET\",status=\"200\", job=\"harp-daemon\"}[1m])",
               "interval": "",
               "legendFormat": "{{path}}",
               "refId": "A"
@@ -3756,7 +3756,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(flask_http_request_duration_seconds_count{method=\"POST\",status=\"200\", service=\"harp-daemon\"}[1m:15s])",
+              "expr": "rate(flask_http_request_duration_seconds_count{method=\"POST\",status=\"200\", job=\"harp-daemon\"}[1m:15s])",
               "interval": "",
               "legendFormat": "{{path}}",
               "refId": "A"
@@ -3845,7 +3845,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(flask_http_request_duration_seconds_sum{method=\"POST\",status=\"200\", service=\"harp-daemon\"}[1m]) /\nrate(flask_http_request_duration_seconds_count{method=\"POST\",status=\"200\", service=\"harp-daemon\"}[1m])",
+              "expr": "rate(flask_http_request_duration_seconds_sum{method=\"POST\",status=\"200\", job=\"harp-daemon\"}[1m]) /\nrate(flask_http_request_duration_seconds_count{method=\"POST\",status=\"200\", job=\"harp-daemon\"}[1m])",
               "interval": "",
               "legendFormat": "{{path}}",
               "refId": "A"
@@ -3934,7 +3934,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(flask_http_request_duration_seconds_count{method=\"PUT\",status=\"200\", service=\"harp-daemon\"}[1m:15s])",
+              "expr": "rate(flask_http_request_duration_seconds_count{method=\"PUT\",status=\"200\", job=\"harp-daemon\"}[1m:15s])",
               "interval": "",
               "legendFormat": "{{path}}",
               "refId": "A"
@@ -4023,7 +4023,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(flask_http_request_duration_seconds_sum{method=\"PUT\",status=\"200\", service=\"harp-daemon\"}[1m]) /\nrate(flask_http_request_duration_seconds_count{method=\"PUT\",status=\"200\", service=\"harp-daemon\"}[1m])",
+              "expr": "rate(flask_http_request_duration_seconds_sum{method=\"PUT\",status=\"200\", job=\"harp-daemon\"}[1m]) /\nrate(flask_http_request_duration_seconds_count{method=\"PUT\",status=\"200\", job=\"harp-daemon\"}[1m])",
               "interval": "",
               "legendFormat": "{{path}}",
               "refId": "A"
@@ -4112,7 +4112,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(flask_http_request_duration_seconds_count{method=\"DELETE\",status=\"200\", service=\"harp-daemon\"}[1m:15s])",
+              "expr": "rate(flask_http_request_duration_seconds_count{method=\"DELETE\",status=\"200\", job=\"harp-daemon\"}[1m:15s])",
               "interval": "",
               "legendFormat": "{{path}}",
               "refId": "A"
@@ -4201,7 +4201,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(flask_http_request_duration_seconds_sum{method=\"DELETE\",status=\"200\", service=\"harp-daemon\"}[1m]) /\nrate(flask_http_request_duration_seconds_count{method=\"DELETE\",status=\"200\", service=\"harp-daemon\"}[1m])",
+              "expr": "rate(flask_http_request_duration_seconds_sum{method=\"DELETE\",status=\"200\", job=\"harp-daemon\"}[1m]) /\nrate(flask_http_request_duration_seconds_count{method=\"DELETE\",status=\"200\", job=\"harp-daemon\"}[1m])",
               "interval": "",
               "legendFormat": "{{path}}",
               "refId": "A"
@@ -4305,7 +4305,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(alert_resubmit_processor_latency_seconds_count{service=\"harp-daemon\"}[$Interval]) * 60",
+              "expr": "rate(alert_resubmit_processor_latency_seconds_count{job=\"harp-daemon\"}[$Interval]) * 60",
               "interval": "",
               "legendFormat": "{{pod}}",
               "refId": "A"
@@ -4397,7 +4397,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(alert_resubmit_processor_latency_seconds_sum{service=\"harp-daemon\"}[$Interval]) * 60 /\nrate(alert_resubmit_processor_latency_seconds_count{service=\"harp-daemon\"}[$Interval]) * 60",
+              "expr": "rate(alert_resubmit_processor_latency_seconds_sum{job=\"harp-daemon\"}[$Interval]) * 60 /\nrate(alert_resubmit_processor_latency_seconds_count{job=\"harp-daemon\"}[$Interval]) * 60",
               "interval": "",
               "legendFormat": "{{pod}}",
               "refId": "A"
@@ -4486,7 +4486,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(graph_render_processor_latency_seconds_count{service=\"harp-daemon\"}[$Interval]) * 60",
+              "expr": "rate(graph_render_processor_latency_seconds_count{job=\"harp-daemon\"}[$Interval]) * 60",
               "interval": "",
               "legendFormat": "{{pod}}",
               "refId": "A"
@@ -4578,7 +4578,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(graph_render_processor_latency_seconds_sum{service=\"harp-daemon\"}[$Interval]) * 60 /\nrate(graph_render_processor_latency_seconds_count{service=\"harp-daemon\"}[$Interval]) * 60",
+              "expr": "rate(graph_render_processor_latency_seconds_sum{job=\"harp-daemon\"}[$Interval]) * 60 /\nrate(graph_render_processor_latency_seconds_count{job=\"harp-daemon\"}[$Interval]) * 60",
               "interval": "",
               "legendFormat": "{{pod}}",
               "refId": "A"
@@ -4667,7 +4667,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(alert_assign_processor_latency_seconds_count{service=\"harp-daemon\"}[$Interval]) * 60",
+              "expr": "rate(alert_assign_processor_latency_seconds_count{job=\"harp-daemon\"}[$Interval]) * 60",
               "interval": "",
               "legendFormat": "{{pod}}",
               "refId": "A"
@@ -4759,7 +4759,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(alert_assign_processor_latency_seconds_sum{service=\"harp-daemon\"}[$Interval]) * 60 /\nrate(alert_assign_processor_latency_seconds_count{service=\"harp-daemon\"}[$Interval]) * 60",
+              "expr": "rate(alert_assign_processor_latency_seconds_sum{job=\"harp-daemon\"}[$Interval]) * 60 /\nrate(alert_assign_processor_latency_seconds_count{job=\"harp-daemon\"}[$Interval]) * 60",
               "interval": "",
               "legendFormat": "{{pod}}",
               "refId": "A"
@@ -4848,7 +4848,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(env_dict_update_processor_latency_seconds_count{service=\"harp-daemon\"}[$Interval]) * 60",
+              "expr": "rate(env_dict_update_processor_latency_seconds_count{job=\"harp-daemon\"}[$Interval]) * 60",
               "interval": "",
               "legendFormat": "{{pod}}",
               "refId": "A"
@@ -4940,7 +4940,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(env_dict_update_processor_latency_seconds_sum{service=\"harp-daemon\"}[$Interval]) * 60 /\nrate(env_dict_update_processor_latency_seconds_count{service=\"harp-daemon\"}[$Interval]) * 60",
+              "expr": "rate(env_dict_update_processor_latency_seconds_sum{job=\"harp-daemon\"}[$Interval]) * 60 /\nrate(env_dict_update_processor_latency_seconds_count{job=\"harp-daemon\"}[$Interval]) * 60",
               "interval": "",
               "legendFormat": "{{pod}}",
               "refId": "A"
