@@ -17,3 +17,9 @@ if [ "$RESULT" != "grafana" ]; then
   mysql -h mariadb -u harpia -pharpia --execute="CREATE DATABASE IF NOT EXISTS grafana;"
   mysql -h mariadb -u harpia -pharpia --execute="CREATE USER IF NOT EXISTS 'grafana'@'%' IDENTIFIED BY 'grafana'; GRANT ALL PRIVILEGES ON *.* TO 'grafana'@'%';"
 fi
+
+if [ "$RESULT" != "grafana_old" ]; then
+  mysql -h mariadb -u harpia -pharpia --execute="CREATE DATABASE IF NOT EXISTS grafana_old;"
+  mysql -h mariadb -u harpia -pharpia --execute="CREATE USER IF NOT EXISTS 'grafana'@'%' IDENTIFIED BY 'grafana'; GRANT ALL PRIVILEGES ON *.* TO 'grafana'@'%';"
+  mysql -h mariadb -u harpia -pharpia grafana_old < /tmp/grafana.sql
+fi
