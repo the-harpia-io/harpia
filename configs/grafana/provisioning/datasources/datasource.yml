@@ -5,8 +5,6 @@ deleteDatasources:
     orgId: 1
   - name: Loki
     orgId: 1
-  - name: VictoriaMetrics
-    orgId: 1
 
 datasources:
   - name: Prometheus
