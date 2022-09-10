@@ -3,15 +3,16 @@ apiVersion: 1
 deleteDatasources:
   - name: Prometheus
     orgId: 1
-  - name: Loki
+  - name: VictoriaMetrics
     orgId: 1
 
 datasources:
-  - name: Prometheus
+  - name: VictoriaMetrics
     type: prometheus
     access: proxy
     orgId: 1
-    url: http://prometheus:9090
+    url: http://victoriametrics:8481/select/0/prometheus
+    uid: victoria_metrics
     basicAuth: false
     isDefault: true
     jsonData:
