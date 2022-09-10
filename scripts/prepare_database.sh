@@ -12,3 +12,8 @@ if [ "$RESULT" != "harpia_db" ]; then
   mysql -h mariadb -u harpia -pharpia harpia_db < /tmp/$1
   echo "Finish importing DB"
 fi
+
+if [ "$RESULT" != "grafana" ]; then
+  mysql -h mariadb -u harpia -pharpia --execute="CREATE DATABASE IF NOT EXISTS grafana;"
+  mysql -h mariadb -u harpia -pharpia --execute="CREATE USER IF NOT EXISTS 'grafana'@'%' IDENTIFIED BY 'grafana'; GRANT ALL PRIVILEGES ON *.* TO 'grafana'@'%';"
+fi
