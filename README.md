@@ -1,0 +1,1 @@
+ENV=prod docker compose up -d

@@ -20,13 +20,28 @@ services:
         condition: on-failure
         delay: 15s
 
+  mariadb-exporter:
+    image: quay.io/prometheus/mysqld-exporter
+    command:
+     - -collect.info_schema.tablestats
+    environment:
+      - DATA_SOURCE_NAME=exporter:exporter@(mariadb:3306)/
+    links:
+      - mariadb
+    depends_on:
+      - mariadb
+
   mysql-client:
     container_name: mysql-client
     image: imega/mysql-client:latest
     volumes:
       - './scripts/:/tmp'
     command: >
-      sh -c "/tmp/prepare_database.sh"
+        sh -c "/tmp/prepare_database.sh client_db_template.sql 
+        {% if ${ENV}=='prod' %}
+        && /tmp/prepare_database.sh prod_db_template.sql
+        {% endif %}
+        "
 
   zookeeper:
     image: docker.io/bitnami/zookeeper:latest
@@ -483,17 +498,75 @@ services:
     command: -config.file=/etc/loki/local-config.yaml
     volumes:
       - "grafana_data:/data/loki"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    pull_policy: always
 
   promtail:
     image: grafana/promtail:latest
     volumes:
       - /var/log:/var/log
     command: -config.file=/etc/promtail/config.yml
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    pull_policy: always
 
   grafana:
     image: grafana/grafana:latest
     volumes:
       - "grafana_data:/var/lib/grafana"
+    environment:
+      - GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s:%(http_port)s/grafana/
+      - GF_SERVER_DOMAIN=167.235.143.177
+      - GF_SERVER_SERVE_FROM_SUB_PATH="true"
+      - GF_DATABASE_TYPE=mysql
+      - GF_DATABASE_HOST=mariadb
+      - GF_DATABASE_NAME=grafana
+      - GF_DATABASE_USER=grafana
+      - GF_DATABASE_PASSWORD=grafana
+      - GF_SECURITY_ALLOW_EMBEDDING="true"
+      - GF_AUTH_ANONYMOUS_ENABLED="true"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    pull_policy: always
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./configs/prometheus/:/etc/prometheus/
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    restart: always
+
+  victoriametrics:
+    container_name: victoriametrics
+    image: victoriametrics/victoria-metrics:latest
+#    ports:
+#      - 8428:8428
+#      - 8089:8089
+#      - 8089:8089/udp
+#      - 2003:2003
+#      - 2003:2003/udp
+#      - 4242:4242
+    volumes:
+      - victoriametrics_data:/storage
+    command:
+      - "--storageDataPath=/storage"
+      - "--graphiteListenAddr=:2003"
+      - "--opentsdbListenAddr=:4242"
+      - "--httpListenAddr=:8428"
+      - "--influxListenAddr=:8089"
+    restart: always
 
   nginx:
       restart: unless-stopped
@@ -503,6 +576,11 @@ services:
           - "443:443"
       volumes:
           - ./configs/nginx/nginx.conf:/etc/nginx/nginx.conf
+      deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+      pull_policy: always
 
 #  certbot:
 #    image: certbot/certbot
@@ -523,4 +601,8 @@ volumes:
   grafana_data:
     driver: local
   loki_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  victoriametrics_data:
     driver: local
