@@ -587,7 +587,7 @@ services:
           - "80:80"
           - "443:443"
       volumes:
-          - ./configs/nginx/nginx.conf:/etc/nginx/nginx.conf
+          - ./configs/nginx:/etc/nginx
       deploy:
         restart_policy:
           condition: on-failure
