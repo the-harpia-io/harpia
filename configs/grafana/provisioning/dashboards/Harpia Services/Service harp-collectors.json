@@ -1331,7 +1331,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(starlette_responses_total{method=\"POST\",namespace=\"btigroup\",job=\"harp-collectors\",status_code!=\"200\"}[1m])",
+              "expr": "rate(starlette_responses_total{method=\"POST\",job=\"harp-collectors\",status_code!=\"200\"}[1m])",
               "interval": "",
               "legendFormat": "{{pod}}: {{method}} - {{path}}",
               "refId": "A"

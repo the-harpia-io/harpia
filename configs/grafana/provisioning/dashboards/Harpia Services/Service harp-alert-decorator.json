@@ -1055,7 +1055,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(total_decorator_latency_seconds_count{job=\"harp-alert-decorator\",namespace=\"btigroup\"}[1m])",
+              "expr": "rate(total_decorator_latency_seconds_count{job=\"harp-alert-decorator\"}[1m])",
               "interval": "",
               "legendFormat": "{{pod}}",
               "refId": "A"
@@ -1281,7 +1281,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(environment_decorator_latency_seconds_count{job=\"harp-alert-decorator\",namespace=\"btigroup\"}[1m])",
+              "expr": "rate(environment_decorator_latency_seconds_count{job=\"harp-alert-decorator\"}[1m])",
               "interval": "",
               "legendFormat": "{{pod}}",
               "refId": "A"
@@ -1374,7 +1374,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(environment_decorator_latency_seconds_sum{job=\"harp-alert-decorator\",namespace=\"btigroup\"}[1m]) /\nrate(environment_decorator_latency_seconds_count{job=\"harp-alert-decorator\",namespace=\"btigroup\"}[1m])",
+              "expr": "rate(environment_decorator_latency_seconds_sum{job=\"harp-alert-decorator\"}[1m]) /\nrate(environment_decorator_latency_seconds_count{job=\"harp-alert-decorator\"}[1m])",
               "interval": "",
               "legendFormat": "{{pod}}",
               "refId": "A"
@@ -1464,7 +1464,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(scenario_decorator_latency_seconds_count{job=\"harp-alert-decorator\",namespace=\"btigroup\"}[1m])",
+              "expr": "rate(scenario_decorator_latency_seconds_count{job=\"harp-alert-decorator\"}[1m])",
               "interval": "",
               "legendFormat": "{{pod}}",
               "refId": "A"
@@ -1557,7 +1557,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(scenario_decorator_latency_seconds_sum{job=\"harp-alert-decorator\",namespace=\"btigroup\"}[1m]) /\nrate(scenario_decorator_latency_seconds_count{job=\"harp-alert-decorator\",namespace=\"btigroup\"}[1m])",
+              "expr": "rate(scenario_decorator_latency_seconds_sum{job=\"harp-alert-decorator\"}[1m]) /\nrate(scenario_decorator_latency_seconds_count{job=\"harp-alert-decorator\"}[1m])",
               "interval": "",
               "legendFormat": "{{pod}}",
               "refId": "A"
@@ -1647,7 +1647,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(integration_decorator_latency_seconds_count{job=\"harp-alert-decorator\",namespace=\"btigroup\"}[1m])",
+              "expr": "rate(integration_decorator_latency_seconds_count{job=\"harp-alert-decorator\"}[1m])",
               "interval": "",
               "legendFormat": "{{pod}}",
               "refId": "A"
@@ -1740,7 +1740,7 @@
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(integration_decorator_latency_seconds_sum{job=\"harp-alert-decorator\",namespace=\"btigroup\"}[1m]) /\nrate(integration_decorator_latency_seconds_count{job=\"harp-alert-decorator\",namespace=\"btigroup\"}[1m])",
+              "expr": "rate(integration_decorator_latency_seconds_sum{job=\"harp-alert-decorator\"}[1m]) /\nrate(integration_decorator_latency_seconds_count{job=\"harp-alert-decorator\"}[1m])",
               "interval": "",
               "legendFormat": "{{pod}}",
               "refId": "A"

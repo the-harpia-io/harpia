@@ -3,7 +3,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -20,15 +23,15 @@
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "gnetId": null,
   "graphTooltip": 0,
-  "id": 38,
-  "iteration": 1662819046435,
   "links": [],
   "liveNow": false,
   "panels": [
     {
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -76,11 +79,16 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "9.1.4",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (notification_action) (delta(notification_statistics_by_alert_name_total{job=\"harp-daemon\", namespace=\"$namespace\"}[$__rate_interval]))",
+          "expr": "sum by (notification_action) (delta(notification_statistics_by_alert_name_total{job=\"harp-daemon\"}[$__rate_interval]))",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -90,13 +98,14 @@
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "transformations": [],
       "type": "stat"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -130,6 +139,7 @@
         "legend": {
           "displayMode": "list",
           "placement": "right",
+          "showLegend": true,
           "values": [
             "value"
           ]
@@ -143,14 +153,20 @@
           "values": false
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.1.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "topk(10, sum by (alert_name) (delta(notification_statistics_by_alert_name_total{job=\"harp-daemon\", namespace=\"$namespace\"}[$__range])))",
+          "expr": "topk(10, sum by (alert_name) (delta(notification_statistics_by_alert_name_total{job=\"harp-daemon\"}[$__range])))",
           "format": "time_series",
           "hide": false,
           "instant": true,
@@ -160,14 +176,15 @@
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Top 10: Sum by alert name",
       "transformations": [],
       "type": "piechart"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -201,6 +218,7 @@
         "legend": {
           "displayMode": "list",
           "placement": "right",
+          "showLegend": true,
           "values": [
             "value"
           ]
@@ -214,14 +232,20 @@
           "values": false
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.1.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "topk(10, sum by (label_name, label_value) (delta(notification_statistics_by_labels_total{job=\"harp-daemon\", namespace=\"$namespace\"}[$__range])))",
+          "expr": "topk(10, sum by (label_name, label_value) (delta(notification_statistics_by_labels_total{job=\"harp-daemon\"}[$__range])))",
           "format": "time_series",
           "hide": false,
           "instant": true,
@@ -231,14 +255,15 @@
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Top 10: Sum by label",
       "transformations": [],
       "type": "piechart"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -272,6 +297,7 @@
         "legend": {
           "displayMode": "list",
           "placement": "right",
+          "showLegend": true,
           "values": [
             "value"
           ]
@@ -285,14 +311,20 @@
           "values": false
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.1.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "topk(10, sum by (source, ms) (delta(notification_statistics_by_labels_total{job=\"harp-daemon\", namespace=\"$namespace\"}[$__range])))",
+          "expr": "topk(10, sum by (source, ms) (delta(notification_statistics_by_labels_total{job=\"harp-daemon\"}[$__range])))",
           "format": "time_series",
           "hide": false,
           "instant": true,
@@ -302,14 +334,15 @@
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Top 10: Sum by source",
       "transformations": [],
       "type": "piechart"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -344,6 +377,8 @@
       "links": [],
       "options": {
         "displayMode": "basic",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -355,11 +390,16 @@
         "showUnfilled": true,
         "text": {}
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "9.1.4",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "topk(10, sum by (alert_name) (delta(notification_statistics_alert_duration{job=\"harp-daemon\", namespace=\"$namespace\"}[$__range])))",
+          "expr": "topk(10, sum by (alert_name) (delta(notification_statistics_alert_duration{job=\"harp-daemon\"}[$__range])))",
           "format": "time_series",
           "hide": false,
           "instant": true,
@@ -369,14 +409,15 @@
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Top 10: Alert duration",
       "transformations": [],
       "type": "bargauge"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -411,6 +452,8 @@
       "links": [],
       "options": {
         "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -422,11 +465,16 @@
         "showUnfilled": true,
         "text": {}
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "9.1.4",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "topk(10, count by (event_name, user_name) (delta(notification_statistics_by_alert_name_total{namespace=\"$namespace\", service=\"harp-actions\"}[$__range])))",
+          "expr": "topk(10, count by (event_name, user_name) (delta(notification_statistics_by_alert_name_total{service=\"harp-actions\"}[$__range])))",
           "format": "time_series",
           "hide": false,
           "instant": true,
@@ -436,14 +484,15 @@
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Top 10: User actions",
       "transformations": [],
       "type": "bargauge"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -452,7 +501,8 @@
           "custom": {
             "align": "auto",
             "displayMode": "auto",
-            "filterable": true
+            "filterable": true,
+            "inspect": false
           },
           "decimals": 0,
           "mappings": [],
@@ -543,15 +593,27 @@
       "id": 58,
       "links": [],
       "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "frameIndex": 1,
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "9.1.4",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "topk(100, sum by (alert_name, label_name, label_value) (delta(notification_statistics_by_labels_total{job=\"harp-daemon\", namespace=\"$namespace\"}[$__range])))",
+          "expr": "topk(100, sum by (alert_name, label_name, label_value) (delta(notification_statistics_by_labels_total{job=\"harp-daemon\"}[$__range])))",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -561,8 +623,6 @@
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Top 100: Alerts by label value",
       "transformations": [
         {
@@ -587,7 +647,10 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "decimals": 0,
       "fieldConfig": {
         "defaults": {
@@ -629,7 +692,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "9.1.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -639,8 +702,13 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (source, ms) (rate(notification_statistics_by_alert_name_total{job=\"harp-daemon\", namespace=\"$namespace\"}[$__rate_interval]) * 30)",
+          "expr": "sum by (source, ms) (rate(notification_statistics_by_alert_name_total{job=\"harp-daemon\"}[$__rate_interval]) * 30)",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -651,9 +719,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Alerts per monitoring system",
       "tooltip": {
         "shared": true,
@@ -663,33 +729,24 @@
       "transformations": [],
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -697,7 +754,10 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "decimals": 0,
       "fieldConfig": {
         "defaults": {
@@ -739,7 +799,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "9.1.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -749,8 +809,13 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (alert_name) (rate(notification_statistics_by_alert_name_total{job=\"harp-daemon\", namespace=\"$namespace\"}[$__rate_interval]) * 30)",
+          "expr": "sum by (alert_name) (rate(notification_statistics_by_alert_name_total{job=\"harp-daemon\"}[$__rate_interval]) * 30)",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -761,9 +826,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Trend",
       "tooltip": {
         "shared": true,
@@ -773,83 +836,40 @@
       "transformations": [],
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     }
   ],
   "refresh": false,
-  "schemaVersion": 31,
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
-        "allValue": null,
-        "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
         },
-        "datasource": "Prometheus",
-        "definition": "label_values(flask_exporter_info, namespace)",
-        "description": null,
-        "error": null,
-        "hide": 0,
-        "includeAll": true,
-        "label": "namespace",
-        "multi": true,
-        "name": "namespace",
-        "options": [],
-        "query": {
-          "query": "label_values(flask_exporter_info, namespace)",
-          "refId": "StandardVariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "datasource": "Prometheus",
-        "description": null,
-        "error": null,
         "filters": [],
         "hide": 0,
-        "label": null,
         "name": "Filters",
         "skipUrlSync": false,
         "type": "adhoc"
@@ -864,5 +884,6 @@
   "timezone": "utc",
   "title": "Notification statistics",
   "uid": "k6afYRD7k",
-  "version": 21
+  "version": 1,
+  "weekStart": ""
 }
