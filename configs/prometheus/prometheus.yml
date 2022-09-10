@@ -6,7 +6,6 @@ remote_write:
   - url: http://victoriametrics:8428/api/v1/write
 
 scrape_configs:
-
   - job_name: 'mariadb'
     scrape_interval: 30s
     static_configs:

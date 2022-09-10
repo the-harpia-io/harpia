@@ -516,7 +516,7 @@ services:
     pull_policy: always
 
   grafana:
-    image: grafana/grafana:8.2.1
+    image: grafana/grafana:latest
     volumes:
       - "grafana_data:/var/lib/grafana"
       - ./configs/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
@@ -529,7 +529,7 @@ services:
       - GF_SERVER_SERVE_FROM_SUB_PATH=true
       - GF_DATABASE_TYPE=mysql
       - GF_DATABASE_HOST=mariadb
-      - GF_DATABASE_NAME=grafana_old
+      - GF_DATABASE_NAME=grafana
       - GF_DATABASE_USER=grafana
       - GF_DATABASE_PASSWORD=grafana
       - GF_SECURITY_ALLOW_EMBEDDING=true
@@ -547,16 +547,17 @@ services:
           memory: 512M
     pull_policy: always
 
-  prometheus:
-    image: prom/prometheus:latest
+  vmagent:
+    container_name: vmagent
+    image: victoriametrics/vmagent:latest
+    depends_on:
+      - "victoriametrics"
     volumes:
-      - ./configs/prometheus/:/etc/prometheus/
-      - prometheus_data:/prometheus
+      -  vmagentdata_data:/vmagentdata
+      -  ./configs/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
-      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
-      - '--web.console.templates=/usr/share/prometheus/consoles'
+      - "--promscrape.config=/etc/prometheus/prometheus.yml"
+      - "--remoteWrite.url=http://victoriametrics:8428/api/v1/write"
     restart: always
 
   victoriametrics:
@@ -613,7 +614,7 @@ volumes:
     driver: local
   loki_data:
     driver: local
-  prometheus_data:
+  vmagentdata_data:
     driver: local
   victoriametrics_data:
     driver: local
