@@ -76,6 +76,11 @@ scrape_configs:
     static_configs:
          - targets: ['harp-integrations:8081']
 
+  - job_name: 'harp-bots'
+    scrape_interval: 30s
+    static_configs:
+         - targets: ['harp-bots:8081']
+
   - job_name: 'harp-filters'
     scrape_interval: 30s
     static_configs:

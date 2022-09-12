@@ -469,6 +469,29 @@ services:
         delay: 5s
     pull_policy: always
 
+  harp-bots:
+    image: theharpia/harp-bots:v1.0.0
+    environment:
+      - LOKI_SERVER=loki
+      - LOKI_PORT=3100
+      - LOG_LEVEL=DEBUG
+
+      - POD_NAME=harp-bots
+      - SERVICE_NAME=harp-bots
+      - SERVICE_NAMESPACE=harpia
+      - URL_PREFIX=/harp-bots
+      - NAMESPACE=harpia
+
+      - DATABASE_SERVER=mariadb
+      - DATABASE_USER=harpia
+      - DATABASE_PSWD=harpia
+      - DATABASE_SCHEMA=harpia_db
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    pull_policy: always
+
   harp-filters:
     image: theharpia/harp-filters:v1.0.0
     environment:
