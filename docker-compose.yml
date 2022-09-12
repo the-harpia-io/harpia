@@ -612,6 +612,7 @@ services:
           - "443:443"
       volumes:
           - ./configs/nginx:/etc/nginx
+          - /etc/letsencrypt/live/harpia.io:/tmp
       deploy:
         restart_policy:
           condition: on-failure
