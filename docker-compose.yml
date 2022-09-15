@@ -470,7 +470,7 @@ services:
     pull_policy: always
 
   harp-bots:
-    image: theharpia/harp-bots:v1.0.0
+    image: theharpia/harp-bots:v1.0.1
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
