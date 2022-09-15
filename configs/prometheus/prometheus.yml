@@ -1,108 +1,87 @@
 global:
   scrape_interval:     15s
-  evaluation_interval: 15s
-
-remote_write:
-  - url: http://victoriametrics:8428/api/v1/write
 
 scrape_configs:
   - job_name: 'mariadb'
-    scrape_interval: 30s
     static_configs:
          - targets: ['mariadb-exporter:9104']
 
   - job_name: 'harp-actions'
-    scrape_interval: 30s
     static_configs:
          - targets: ['harp-actions:8081']
 
   - job_name: 'harp-collectors'
-    scrape_interval: 30s
     static_configs:
          - targets: ['harp-collectors:8081']
 
   - job_name: 'harp-auto-test'
-    scrape_interval: 30s
     static_configs:
          - targets: ['harp-auto-test:8081']
 
   - job_name: 'harp-environments'
-    scrape_interval: 30s
     static_configs:
          - targets: ['harp-environments:8081']
 
   - job_name: 'harp-daemon'
-    scrape_interval: 30s
     static_configs:
          - targets: ['harp-daemon:8081']
 
   - job_name: 'harp-users'
-    scrape_interval: 30s
     static_configs:
          - targets: ['harp-users:8081']
 
   - job_name: 'harp-licenses'
-    scrape_interval: 30s
     static_configs:
          - targets: ['harp-licenses:8081']
 
   - job_name: 'harp-aggregator'
-    scrape_interval: 30s
     static_configs:
          - targets: ['harp-aggregator:8081']
 
   - job_name: 'harp-bridge'
-    scrape_interval: 30s
     static_configs:
          - targets: ['harp-bridge:8081']
 
   - job_name: 'harp-scenarios'
-    scrape_interval: 30s
     static_configs:
          - targets: ['harp-scenarios:8081']
 
   - job_name: 'harp-clientevents'
-    scrape_interval: 30s
     static_configs:
          - targets: ['harp-clientevents:8081']
 
   - job_name: 'harp-alert-decorator'
-    scrape_interval: 30s
     static_configs:
          - targets: ['harp-alert-decorator:8081']
 
   - job_name: 'harp-integrations'
-    scrape_interval: 30s
     static_configs:
          - targets: ['harp-integrations:8081']
 
   - job_name: 'harp-bots'
-    scrape_interval: 30s
     static_configs:
          - targets: ['harp-bots:8081']
 
   - job_name: 'harp-filters'
-    scrape_interval: 30s
     static_configs:
          - targets: ['harp-filters:8081']
 
   - job_name: 'harp-notifications-voice'
-    scrape_interval: 30s
     static_configs:
          - targets: ['harp-notifications-voice:8081']
 
-#  - job_name: 'blackbox-exporter'
-#    metrics_path: /probe
-#    params:
-#      module: [http_2xx]
-#    static_configs:
-#      - targets:
-#        - http://harp-filters:8081/harp-filters/health
-#        - http://harp-notifications-voice:8081/harp-notifications-voice/health
-#    relabel_configs:
-#      - source_labels: [__address__]
-#        target_label: __param_target
-#      - source_labels: [__param_target]
-#        target_label: instance
-#      - target_label: __address__
-#        replacement: blackbox-exporter:9115
+  - job_name: 'blackbox-exporter'
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    static_configs:
+      - targets:
+        - http://harp-filters:8081/harp-filters/health
+        - http://harp-notifications-voice:8081/harp-notifications-voice/health
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox-exporter:9115
