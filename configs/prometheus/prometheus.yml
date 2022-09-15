@@ -1,5 +1,5 @@
 global:
-  scrape_interval:     15s
+  scrape_interval:     30s
 
 scrape_configs:
   - job_name: 'mariadb'
@@ -13,10 +13,6 @@ scrape_configs:
   - job_name: 'harp-collectors'
     static_configs:
          - targets: ['harp-collectors:8081']
-
-  - job_name: 'harp-auto-test'
-    static_configs:
-         - targets: ['harp-auto-test:8081']
 
   - job_name: 'harp-environments'
     static_configs:
@@ -75,9 +71,32 @@ scrape_configs:
     params:
       module: [http_2xx]
     static_configs:
-      - targets:
+      - labels:
+          module: http_2xx
+        targets:
         - http://harp-filters:8081/harp-filters/health
         - http://harp-notifications-voice:8081/harp-notifications-voice/health
+        - http://harp-actions:8081/harp-actions/health
+        - http://harp-collectors:8081/harp-collectors/health
+        - http://harp-environments:8081/harp-environments/health
+        - http://harp-daemon:8081/harp-daemon/health
+        - http://harp-users:8081/harp-users/health
+        - http://harp-licenses:8081/harp-licenses/health
+        - http://harp-aggregator:8081/harp-aggregator/health
+        - http://harp-bridge:8081/harp-bridge/health
+        - http://harp-scenarios:8081/harp-scenarios/health
+        - http://harp-clientevents:8081/harp-clientevents/health
+        - http://harp-alert-decorator:8081/harp-alert-decorator/health
+        - http://harp-integrations:8081/harp-integrations/health
+        - http://harp-bots:8081/harp-bots/health
+        - http://loki:3100/metrics
+      - labels:
+          module: tcp_connect
+        targets:
+          - mariadb:3306
+          - zookeeper:2181
+          - kafka:9092
+          - aerospike:3100
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target

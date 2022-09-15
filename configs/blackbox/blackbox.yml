@@ -5,3 +5,6 @@ modules:
     http:
       valid_status_codes: [] #default to 2xx
       method: GET
+  tcp_connect:
+    prober: tcp
+    timeout: 5s
