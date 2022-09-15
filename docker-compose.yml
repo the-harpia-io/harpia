@@ -639,6 +639,19 @@ services:
           delay: 5s
       pull_policy: always
 
+  blackbox-exporter:
+    image: prom/blackbox-exporter:v0.22.0
+    container_name: blackbox
+    restart: unless-stopped
+    command:
+      - "--config.file=/etc/blackbox/blackbox.yml"
+    volumes:
+      - ./configs/blackbox/blackbox.yml:/etc/blackbox/blackbox.yml
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+
 volumes:
   mariadb_data:
     driver: local
