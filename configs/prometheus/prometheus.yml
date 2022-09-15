@@ -85,3 +85,8 @@ scrape_configs:
     scrape_interval: 30s
     static_configs:
          - targets: ['harp-filters:8081']
+
+  - job_name: 'harp-notifications-voice'
+    scrape_interval: 30s
+    static_configs:
+         - targets: ['harp-notifications-voice:8081']
