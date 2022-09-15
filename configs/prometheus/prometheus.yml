@@ -68,8 +68,8 @@ scrape_configs:
 
   - job_name: 'blackbox-exporter'
     metrics_path: /probe
-    params:
-      module: [http_2xx]
+#    params:
+#      module: [http_2xx]
     static_configs:
       - labels:
           module: http_2xx
