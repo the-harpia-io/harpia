@@ -70,6 +70,8 @@ services:
 
   kafka-lag-exporter:
     image: docker.io/seglo/kafka-lag-exporter:0.7.3
+    volumes:
+      - './configs/kafkalag:/opt/docker/conf'
     environment:
       - KAFKA_LAG_EXPORTER_CLUSTERS.0.name=kafka
       - KAFKA_LAG_EXPORTER_CLUSTERS.0.bootstrap-brokers=kafka:9092
