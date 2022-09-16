@@ -122,4 +122,4 @@ scrape_configs:
         separator: ':'
         regex: '(.*):(.*)'
         replacement: '${1}'
-        target_label: service
+        target_label: datastore
