@@ -66,14 +66,12 @@ scrape_configs:
     static_configs:
          - targets: ['harp-notifications-voice:8081']
 
-  - job_name: 'blackbox-exporter'
+  - job_name: 'blackbox-exporter-http'
     metrics_path: /probe
-#    params:
-#      module: [http_2xx]
+    params:
+      module: [http_2xx]
     static_configs:
-      - labels:
-          module: http_2xx
-        targets:
+      - targets:
         - http://harp-filters:8081/harp-filters/health
         - http://harp-notifications-voice:8081/harp-notifications-voice/health
         - http://harp-actions:8081/harp-actions/health
@@ -90,13 +88,6 @@ scrape_configs:
         - http://harp-integrations:8081/harp-integrations/health
         - http://harp-bots:8081/harp-bots/health
         - http://loki:3100/metrics
-      - labels:
-          module: tcp_connect
-        targets:
-          - mariadb:3306
-          - zookeeper:2181
-          - kafka:9092
-          - aerospike:3100
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -104,3 +95,31 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: blackbox-exporter:9115
+      - source_labels: [ instance ]
+        separator: '/'
+        regex: 'http://(.*):8081/(.*)/(.*)'
+        replacement: '${1}'
+        target_label: service
+
+  - job_name: 'blackbox-exporter-tcp'
+    metrics_path: /probe
+    params:
+      module: [tcp_connect]
+    static_configs:
+      - targets:
+        - mariadb:3306
+        - zookeeper:2181
+        - kafka:9092
+        - aerospike:3100
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox-exporter:9115
+      - source_labels: [ instance ]
+        separator: ':'
+        regex: '(.*):(.*)'
+        replacement: '${1}'
+        target_label: service
