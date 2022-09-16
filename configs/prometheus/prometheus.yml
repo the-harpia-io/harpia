@@ -66,6 +66,10 @@ scrape_configs:
     static_configs:
          - targets: ['harp-notifications-voice:8081']
 
+  - job_name: 'kafka-lag-exporter'
+    static_configs:
+      - targets: [ 'kafka-lag-exporter:8000' ]
+
   - job_name: 'blackbox-exporter-http'
     metrics_path: /probe
     params:
