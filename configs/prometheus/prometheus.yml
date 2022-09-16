@@ -66,6 +66,10 @@ scrape_configs:
     static_configs:
          - targets: ['harp-notifications-voice:8081']
 
+  - job_name: 'harp-notifications-sms'
+    static_configs:
+         - targets: ['harp-notifications-sms:8081']
+
   - job_name: 'kafka-lag-exporter'
     static_configs:
       - targets: [ 'kafka-lag-exporter:8000' ]
@@ -78,6 +82,7 @@ scrape_configs:
       - targets:
         - http://harp-filters:8081/harp-filters/health
         - http://harp-notifications-voice:8081/harp-notifications-voice/health
+        - http://harp-notifications-voice:8081/harp-notifications-sms/health
         - http://harp-actions:8081/harp-actions/health
         - http://harp-collectors:8081/harp-collectors/health
         - http://harp-environments:8081/harp-environments/health

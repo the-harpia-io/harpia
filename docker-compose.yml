@@ -524,6 +524,26 @@ services:
         delay: 5s
     pull_policy: always
 
+  harp-notifications-sms:
+    image: theharpia/harp-notifications-sms:v1.0.0
+    environment:
+      - LOKI_SERVER=loki
+      - LOKI_PORT=3100
+      - LOG_LEVEL=DEBUG
+
+      - POD_NAME=harp-notifications-sms
+      - SERVICE_NAME=harp-notifications-sms
+      - SERVICE_NAMESPACE=harpia
+      - URL_PREFIX=/harp-notifications-sms
+      - NAMESPACE=harpia
+
+      - BOTS_SERVICE=http://harp-bots:8081/harp-bots/api/v1/bots
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    pull_policy: always
+
   harp-filters:
     image: theharpia/harp-filters:v1.0.0
     environment:
