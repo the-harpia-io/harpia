@@ -226,8 +226,6 @@ services:
       - SMTP_ACTIVE=false
       - SMTP_HOST=smtp.gmail.com
       - SMTP_PORT=465
-      - SMTP_USER=harp.notifications@gmail.com
-      - SMTP_PASS=Alyan2757622@
 
       - JIRA_ACTIVE=false
       - JIRA_HOST=''
