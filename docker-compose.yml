@@ -71,11 +71,11 @@ services:
   kafka-lag-exporter:
     image: docker.io/seglo/kafka-lag-exporter:0.7.3
     volumes:
-      - ./configs/kafkalag/application.conf:/opt/application.conf
-      - ./configs/kafkalag/logback.xml:/opt/logback.xml
+      - ./configs/kafkalag:/opt/docker/conf
+      - ./configs/kafkalag:/opt/docker/conf
     command:
-      - "-Dconfig.file=/opt/application.conf"
-      - "-Dlogback.configurationFile=/opt/logback.xml"
+      - "-Dconfig.file=/opt/docker/conf/application.conf"
+      - "-Dlogback.configurationFile=/opt/docker/conf/logback.xml"
     deploy:
       restart_policy:
         condition: on-failure
