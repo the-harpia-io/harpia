@@ -110,7 +110,7 @@ scrape_configs:
         - mariadb:3306
         - zookeeper:2181
         - kafka:9092
-        - aerospike:3100
+        - aerospike:3000
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
