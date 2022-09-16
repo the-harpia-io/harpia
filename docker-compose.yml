@@ -71,7 +71,8 @@ services:
   kafka-lag-exporter:
     image: docker.io/seglo/kafka-lag-exporter:0.7.3
     volumes:
-      - ./configs/kafka_lag/:/opt/docker/conf/
+      - ./configs/kafka_lag/application.conf:/opt/docker/conf/application.conf
+      - ./configs/kafka_lag/logback.xml:/opt/docker/conf/logback.xml
     command:
       - "-Dconfig.file=/opt/docker/conf/application.conf"
       - "-Dlogback.configurationFile=/opt/docker/conf/logback.xml"
