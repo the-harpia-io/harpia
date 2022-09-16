@@ -82,7 +82,7 @@ scrape_configs:
       - targets:
         - http://harp-filters:8081/harp-filters/health
         - http://harp-notifications-voice:8081/harp-notifications-voice/health
-        - http://harp-notifications-voice:8081/harp-notifications-sms/health
+        - http://harp-notifications-sms:8081/harp-notifications-sms/health
         - http://harp-actions:8081/harp-actions/health
         - http://harp-collectors:8081/harp-collectors/health
         - http://harp-environments:8081/harp-environments/health
