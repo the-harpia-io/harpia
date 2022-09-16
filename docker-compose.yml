@@ -150,9 +150,9 @@ services:
       - URL_PREFIX=/harp-auto-test
       - NAMESPACE=harpia
       - LOG_LEVEL=DEBUG
-      - PERIOD_RUN=60
+      - PERIOD_RUN=5
       - COLLECTOR=http://harp-collectors:8081/harp-collectors
-      - MAX_SCHEDULER_INSTANCES=2
+      - MAX_SCHEDULER_INSTANCES=5
     deploy:
       restart_policy:
         condition: on-failure
