@@ -70,6 +70,10 @@ scrape_configs:
     static_configs:
          - targets: ['harp-notifications-sms:8081']
 
+  - job_name: 'harp-notifications-gmail'
+    static_configs:
+         - targets: ['harp-notifications-gmail:8081']
+
   - job_name: 'kafka-lag-exporter'
     static_configs:
       - targets: [ 'kafka-lag-exporter:8000' ]
@@ -97,6 +101,7 @@ scrape_configs:
         - http://harp-integrations:8081/harp-integrations/health
         - http://harp-bots:8081/harp-bots/health
         - http://loki:3100/metrics
+        - http://harp-notifications-gmail:8081/harp-notifications-gmail/health
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
