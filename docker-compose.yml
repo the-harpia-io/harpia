@@ -556,8 +556,8 @@ services:
       - NAMESPACE=harpia
 
       - BOTS_SERVICE=http://harp-bots:8081/harp-bots/api/v1/bots
-      - GMAIL_HOST = smtp.gmail.com
-      - GMAIL_PORT = 465
+      - GMAIL_HOST=smtp.gmail.com
+      - GMAIL_PORT=465
     deploy:
       restart_policy:
         condition: on-failure
