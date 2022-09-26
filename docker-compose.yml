@@ -95,6 +95,18 @@ services:
         condition: on-failure
         delay: 5s
 
+  aerospike-data-browser:
+    image: reugn/aerospike-data-browser:latest
+    ports:
+      - "3001:3000"
+      - "8081:8081"
+    environment:
+      - AS_HOSTLIST=aerospike
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+
   harp-actions:
     image: theharpia/harp-actions:v1.0.11
     environment:
