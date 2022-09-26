@@ -44,7 +44,7 @@ services:
         "
 
   zookeeper:
-    image: docker.io/bitnami/zookeeper:latest
+    image: docker.io/bitnami/zookeeper:3.6.3
     volumes:
       - "zookeeper_data:/bitnami"
     environment:
@@ -55,7 +55,7 @@ services:
         delay: 5s
 
   kafka:
-    image: docker.io/bitnami/kafka:latest
+    image: docker.io/bitnami/kafka:3.2.3
     volumes:
       - "kafka_data:/bitnami"
     environment:
@@ -81,7 +81,7 @@ services:
         delay: 5s
 
   aerospike:
-    image: aerospike/aerospike-server:latest
+    image: aerospike/aerospike-server:6.1.0.2
     environment:
       - NAMESPACE=harpia
       - MEM_GB=1
