@@ -444,7 +444,7 @@ services:
     pull_policy: always
 
   harp-ui:
-    image: theharpia/harp-ui:v1.0.1
+    image: theharpia/harp-ui:v1.1.0
     environment:
       - POD_NAME=harp-ui
       - DOMAIN=https://playground.harpia.io
