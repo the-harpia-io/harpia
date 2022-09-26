@@ -82,6 +82,9 @@ services:
 
   aerospike:
     image: aerospike/aerospike-server:6.1.0.2
+    ports:
+      - "3000:3000"
+      - "3002:3002"
     environment:
       - NAMESPACE=harpia
       - MEM_GB=1
