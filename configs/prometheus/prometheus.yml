@@ -78,6 +78,14 @@ scrape_configs:
     static_configs:
       - targets: [ 'kafka-lag-exporter:8000' ]
 
+  - job_name: 'customer-service'
+    static_configs:
+         - targets: ['customer-service:8081']
+
+  - job_name: 'dictionary-service'
+    static_configs:
+         - targets: ['dictionary-service:8081']
+
   - job_name: 'blackbox-exporter-http'
     metrics_path: /probe
     params:
@@ -102,6 +110,8 @@ scrape_configs:
         - http://harp-bots:8081/harp-bots/health
         - http://loki:3100/metrics
         - http://harp-notifications-gmail:8081/harp-notifications-gmail/health
+        - http://customer-service:8081/customer-service/health
+        - http://dictionary-service:8081/dictionary-service/health
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target

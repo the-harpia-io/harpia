@@ -710,6 +710,46 @@ services:
         condition: on-failure
         delay: 5s
 
+  customer-service:
+    image: theharpia/customer-service:v1.0.0
+    environment:
+      - LOKI_SERVER=loki
+      - LOKI_PORT=3100
+      - LOG_LEVEL=DEBUG
+
+      - POD_NAME=customer-service
+      - SERVICE_NAME=customer-service
+      - SERVICE_NAMESPACE=harpia
+      - URL_PREFIX=/customer-service
+      - NAMESPACE=harpia
+
+      - AEROSPIKE_HOST=aerospike
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    pull_policy: always
+
+  dictionary-service:
+    image: theharpia/dictionary-service:v1.0.0
+    environment:
+      - LOKI_SERVER=loki
+      - LOKI_PORT=3100
+      - LOG_LEVEL=DEBUG
+
+      - POD_NAME=dictionary-service
+      - SERVICE_NAME=dictionary-service
+      - SERVICE_NAMESPACE=harpia
+      - URL_PREFIX=/dictionary-service
+      - NAMESPACE=harpia
+
+      - AEROSPIKE_HOST=aerospike
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    pull_policy: always
+
 volumes:
   mariadb_data:
     driver: local
