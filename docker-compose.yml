@@ -690,7 +690,7 @@ services:
       volumes:
           - ./configs/nginx:/etc/nginx
           - /etc/letsencrypt/archive/harpia.io:/tmp
-          - ./configs/nginx/icons:/var/www/html
+          - ./configs/assets:/var/www/html
       deploy:
         restart_policy:
           condition: on-failure
