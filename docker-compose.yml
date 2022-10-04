@@ -724,6 +724,7 @@ services:
       - NAMESPACE=harpia
 
       - AEROSPIKE_HOST=aerospike
+      - ORG_SERVICE=http://org-service:8081/customer-service
     deploy:
       restart_policy:
         condition: on-failure
