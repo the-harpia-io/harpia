@@ -90,6 +90,14 @@ scrape_configs:
     static_configs:
          - targets: ['org-service:8081']
 
+  - job_name: 'employee-service'
+    static_configs:
+         - targets: ['employee-service:8081']
+
+  - job_name: 'order-service'
+    static_configs:
+         - targets: ['order-service:8081']
+
   - job_name: 'blackbox-exporter-http'
     metrics_path: /probe
     params:
@@ -117,6 +125,8 @@ scrape_configs:
         - http://customer-service:8081/customer-service/health
         - http://dictionary-service:8081/dictionary-service/health
         - http://org-service:8081/org-service/health
+        - http://employee-service:8081/employee-service/health
+        - http://order-service:8081/order-service/health
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
