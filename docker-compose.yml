@@ -805,8 +805,8 @@ services:
       - SERVICE_NAMESPACE=harpia
       - URL_PREFIX=/order-service
       - NAMESPACE=harpia
-
       - AEROSPIKE_HOST=aerospike
+      - NOTIFICATION_SERVICE=http://notification-service:8081/notification-service
     deploy:
       restart_policy:
         condition: on-failure
