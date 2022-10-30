@@ -853,6 +853,49 @@ services:
         delay: 5s
     pull_policy: always
 
+  promo-service:
+    image: theharpia/promo-service:v1.0.0
+    environment:
+      - LOKI_SERVER=loki
+      - LOKI_PORT=3100
+      - LOG_LEVEL=DEBUG
+
+      - POD_NAME=promo-service
+      - SERVICE_NAME=promo-service
+      - SERVICE_NAMESPACE=harpia
+      - URL_PREFIX=/promo-service
+      - NAMESPACE=harpia
+
+      - NOTIFY_SERVICE=http://notify-service:8081/notify-service
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    pull_policy: always
+
+  notify-service:
+    image: theharpia/notify-service:v1.0.0
+    environment:
+      - LOKI_SERVER=loki
+      - LOKI_PORT=3100
+      - LOG_LEVEL=DEBUG
+
+      - POD_NAME=notify-service
+      - SERVICE_NAME=notify-service
+      - SERVICE_NAMESPACE=harpia
+      - URL_PREFIX=/notify-service
+      - NAMESPACE=harpia
+
+      - KYIVSTAR_CLIENT_ID=e5d6e686-df70-4e49-86d0-929fa18ce36a
+      - KYIVSTAR_CLIENT_SECRET=G1K-1YEJFVa4hgxQh.9B._UsRn
+      - KYIVSTAR_TOKEN_URL=https://api-gateway.kyivstar.ua/idp/oauth2/token
+      - KYIVSTAR_SMS_URL=https://api-gateway.kyivstar.ua/sandbox/rest/v1beta/sms
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    pull_policy: always
+
 
 volumes:
   mariadb_data:
