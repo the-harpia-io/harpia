@@ -889,7 +889,7 @@ services:
       - KYIVSTAR_CLIENT_ID=e5d6e686-df70-4e49-86d0-929fa18ce36a
       - KYIVSTAR_CLIENT_SECRET=G1K-1YEJFVa4hgxQh.9B._UsRn
       - KYIVSTAR_TOKEN_URL=https://api-gateway.kyivstar.ua/idp/oauth2/token
-      - KYIVSTAR_SMS_URL=https://api-gateway.kyivstar.ua/sandbox/rest/v1beta/sms
+      - KYIVSTAR_SMS_URL=https://api-gateway.kyivstar.ua/mock/rest/v1beta/sms
     deploy:
       restart_policy:
         condition: on-failure
