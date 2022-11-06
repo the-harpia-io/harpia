@@ -768,6 +768,10 @@ services:
 
       - AEROSPIKE_HOST=aerospike
       - ASSETS_SERVICE=http://assets-service:8081/assets-service
+      - VM_URL_EXPORT=http://victoriametrics:8428/prometheus/api/v1/query_range
+
+      - STATS_TOPIC=stats-collector
+      - KAFKA_SERVERS=kafka:9092
     deploy:
       restart_policy:
         condition: on-failure
@@ -809,6 +813,8 @@ services:
       - AEROSPIKE_HOST=aerospike
       - NOTIFICATION_SERVICE=http://notification-service:8081/notification-service
       - NOTIFY_SERVICE=http://notify-service:8081/notify-service
+      - STATS_TOPIC=stats-collector
+      - KAFKA_SERVERS=kafka:9092
     deploy:
       restart_policy:
         condition: on-failure
@@ -891,6 +897,29 @@ services:
       - KYIVSTAR_CLIENT_SECRET=G1K-1YEJFVa4hgxQh.9B._UsRn
       - KYIVSTAR_TOKEN_URL=https://api-gateway.kyivstar.ua/idp/oauth2/token
       - KYIVSTAR_SMS_URL=https://api-gateway.kyivstar.ua/mock/rest/v1beta/sms
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    pull_policy: always
+
+  stats-service:
+    image: theharpia/stats-service:v1.0.0
+    environment:
+      - LOKI_SERVER=loki
+      - LOKI_PORT=3100
+      - LOG_LEVEL=DEBUG
+
+      - POD_NAME=stats-service
+      - SERVICE_NAME=stats-service
+      - SERVICE_NAMESPACE=harpia
+      - URL_PREFIX=/stats-service
+      - NAMESPACE=harpia
+
+      - VM_URL_EXPORT=http://victoriametrics:8428/api/v1/import/prometheus
+
+      - STATS_TOPIC=stats-collector
+      - KAFKA_SERVERS=kafka:9092
     deploy:
       restart_policy:
         condition: on-failure

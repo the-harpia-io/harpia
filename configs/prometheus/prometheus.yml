@@ -114,6 +114,10 @@ scrape_configs:
     static_configs:
          - targets: ['notify-service:8081']
 
+  - job_name: 'stats-service'
+    static_configs:
+      - targets: [ 'stats-service:8081' ]
+
   - job_name: 'blackbox-exporter-http'
     metrics_path: /probe
     params:
@@ -147,6 +151,7 @@ scrape_configs:
         - http://assets-service:8081/assets-service/health
         - http://promo-service:8081/promo-service/health
         - http://notify-service:8081/notify-service/health
+        - http://stats-service:8081/stats-service/health
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
