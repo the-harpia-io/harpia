@@ -666,8 +666,8 @@ services:
   victoriametrics:
     container_name: victoriametrics
     image: victoriametrics/victoria-metrics:latest
-#    ports:
-#      - 8428:8428
+    ports:
+      - "8428:8428"
 #      - 8089:8089
 #      - 8089:8089/udp
 #      - 2003:2003
