@@ -808,6 +808,7 @@ services:
       - NAMESPACE=harpia
       - AEROSPIKE_HOST=aerospike
       - NOTIFICATION_SERVICE=http://notification-service:8081/notification-service
+      - NOTIFY_SERVICE=http://notify-service:8081/notify-service
     deploy:
       restart_policy:
         condition: on-failure
