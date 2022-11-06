@@ -683,6 +683,13 @@ services:
       - "--influxListenAddr=:8089"
     restart: always
 
+  vmui:
+    container_name: vmui
+    image: victoriametrics/vmui:latest
+    ports:
+      - "9090:8080"
+    restart: always
+
   nginx:
       restart: unless-stopped
       image: nginx:latest
