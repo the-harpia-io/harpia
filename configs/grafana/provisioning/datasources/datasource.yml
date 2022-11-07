@@ -44,3 +44,8 @@ datasources:
     editable: false
     apiVersion: 1
     uid: tempo
+    jsonData:
+      tracesToLogs:
+        datasourceUid: loki
+      serviceGraph:
+        datasourceUid: prometheus
