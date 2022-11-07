@@ -653,7 +653,7 @@ services:
       - GF_ALERTING_ENABLED=false
       - GF_UNIFIED_ALERTING_ENABLED=true
       - GF_INSTALL_PLUGINS=natel-discrete-panel,grafana-piechart-panel,flant-statusmap-panel,yesoreyeram-boomtable-panel
-      - GF_FEATURE_TOGGLES_ENABLE=tempoApmTable
+      - GF_FEATURE_TOGGLES_ENABLE=tempoApmTable,tempoSearch,tempoBackendSearch
     deploy:
       restart_policy:
         condition: on-failure
