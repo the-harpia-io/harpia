@@ -47,5 +47,5 @@ datasources:
     jsonData:
       tracesToLogs:
         datasourceUid: loki
-      serviceGraph:
+      traceToMetrics:
         datasourceUid: prometheus
