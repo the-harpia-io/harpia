@@ -732,6 +732,7 @@ services:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
       - LOG_LEVEL=DEBUG
+      - TEMPO_URL=http://tempo:4317
 
       - POD_NAME=customer-service
       - SERVICE_NAME=customer-service
@@ -753,6 +754,7 @@ services:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
       - LOG_LEVEL=DEBUG
+      - TEMPO_URL=http://tempo:4317
 
       - POD_NAME=dictionary-service
       - SERVICE_NAME=dictionary-service
@@ -773,6 +775,7 @@ services:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
       - LOG_LEVEL=DEBUG
+      - TEMPO_URL=http://tempo:4317
 
       - POD_NAME=org-service
       - SERVICE_NAME=org-service
@@ -798,6 +801,7 @@ services:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
       - LOG_LEVEL=DEBUG
+      - TEMPO_URL=http://tempo:4317
 
       - POD_NAME=employee-service
       - SERVICE_NAME=employee-service
@@ -818,6 +822,7 @@ services:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
       - LOG_LEVEL=DEBUG
+      - TEMPO_URL=http://tempo:4317
 
       - POD_NAME=order-service
       - SERVICE_NAME=order-service
@@ -841,6 +846,7 @@ services:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
       - LOG_LEVEL=DEBUG
+      - TEMPO_URL=http://tempo:4317
 
       - POD_NAME=notification-service
       - SERVICE_NAME=notification-service
@@ -862,6 +868,7 @@ services:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
       - LOG_LEVEL=DEBUG
+      - TEMPO_URL=http://tempo:4317
 
       - POD_NAME=assets-service
       - SERVICE_NAME=assets-service
@@ -880,6 +887,7 @@ services:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
       - LOG_LEVEL=DEBUG
+      - TEMPO_URL=http://tempo:4317
 
       - POD_NAME=promo-service
       - SERVICE_NAME=promo-service
@@ -900,6 +908,7 @@ services:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
       - LOG_LEVEL=DEBUG
+      - TEMPO_URL=http://tempo:4317
 
       - POD_NAME=notify-service
       - SERVICE_NAME=notify-service
@@ -923,6 +932,7 @@ services:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
       - LOG_LEVEL=DEBUG
+      - TEMPO_URL=http://tempo:4317
 
       - POD_NAME=stats-service
       - SERVICE_NAME=stats-service
