@@ -5213,8 +5213,52 @@
 			"value": "0"
 		},
 		{
-			"key": "baseUrl",
-			"value": "https://api-gateway.kyivstar.ua/mock/rest/v1beta"
+			"key": "promo_id",
+			"value": "0"
+		},
+		{
+			"key": "temp_client_id",
+			"value": "0"
+		},
+		{
+			"key": "emp_id",
+			"value": "0"
+		},
+		{
+			"key": "customer-service-host",
+			"value": "https://playground.harpia.io/customer-service"
+		},
+		{
+			"key": "dictionary-service-host",
+			"value": "https://playground.harpia.io/dictionary-service"
+		},
+		{
+			"key": "org-service-host",
+			"value": "https://playground.harpia.io/org-service"
+		},
+		{
+			"key": "employee-service-host",
+			"value": "https://playground.harpia.io/employee-service"
+		},
+		{
+			"key": "order-service-host",
+			"value": "https://playground.harpia.io/order-service"
+		},
+		{
+			"key": "notification-service-host",
+			"value": "https://playground.harpia.io/notification-service"
+		},
+		{
+			"key": "assets-service-host",
+			"value": "https://playground.harpia.io/assets-service"
+		},
+		{
+			"key": "promo-service-host",
+			"value": "https://playground.harpia.io/promo-service"
+		},
+		{
+			"key": "notify-service-host",
+			"value": "https://playground.harpia.io/notify-service"
 		}
 	]
 }
