@@ -5197,34 +5197,6 @@
 	],
 	"variable": [
 		{
-			"key": "org_id",
-			"value": "0"
-		},
-		{
-			"key": "employee_id",
-			"value": "0"
-		},
-		{
-			"key": "client_id",
-			"value": "0"
-		},
-		{
-			"key": "order_id",
-			"value": "0"
-		},
-		{
-			"key": "promo_id",
-			"value": "0"
-		},
-		{
-			"key": "temp_client_id",
-			"value": "0"
-		},
-		{
-			"key": "emp_id",
-			"value": "0"
-		},
-		{
 			"key": "customer-service-host",
 			"value": "https://playground.harpia.io/customer-service"
 		},
