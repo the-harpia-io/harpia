@@ -955,7 +955,7 @@ services:
     environment:
       - PORT=9090
       - COLLECTION_FILE=/tmp/collection.json
-      - RUN_INTERVAL=30
+      - RUN_INTERVAL=120
       - RUN_ITERATIONS=1
     volumes:
       - './configs/postman:/tmp'
