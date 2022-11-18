@@ -97,6 +97,8 @@ services:
 
   aerospike:
     image: aerospike/aerospike-server:latest
+    volumes:
+      - 'aerospike_data:/opt/aerospike/data'
     ports:
       - "3000:3000"
       - "3002:3002"
@@ -109,6 +111,7 @@ services:
       restart_policy:
         condition: on-failure
         delay: 5s
+      replicas: 3
 
   harp-actions:
     image: theharpia/harp-actions:v1.0.11
