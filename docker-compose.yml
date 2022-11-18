@@ -84,7 +84,7 @@ services:
         delay: 5s
 
   kafka-lag-exporter:
-    image: docker.io/seglo/kafka-lag-exporter:0.7.3
+    image: docker.io/seglo/kafka-lag-exporter:0.8.2
     volumes:
       - './configs/kafkalag:/opt/docker/conf'
     environment:
@@ -96,7 +96,7 @@ services:
         delay: 5s
 
   aerospike:
-    image: aerospike/aerospike-server:6.1.0.2
+    image: aerospike/aerospike-server:latest
     ports:
       - "3000:3000"
       - "3002:3002"
@@ -714,7 +714,7 @@ services:
       pull_policy: always
 
   blackbox-exporter:
-    image: prom/blackbox-exporter:v0.22.0
+    image: prom/blackbox-exporter:latest
     container_name: blackbox
     restart: unless-stopped
     command:
