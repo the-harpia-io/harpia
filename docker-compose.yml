@@ -111,7 +111,7 @@ services:
       restart_policy:
         condition: on-failure
         delay: 5s
-      replicas: 3
+#      replicas: 3
 
   harp-actions:
     image: theharpia/harp-actions:v1.0.11
