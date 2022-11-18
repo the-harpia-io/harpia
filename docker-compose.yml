@@ -742,6 +742,12 @@ services:
 
       - AEROSPIKE_HOST=aerospike
       - ORDER_SERVICE=http://order-service:8081/order-service
+
+      - ENVIRONMENT=dev
+      - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
+      - ALGORITHM=HS256
+      - TOKEN_EXPIRE_MINUTES=5000000
+      - AUTH_MODE=disabled
     deploy:
       restart_policy:
         condition: on-failure
@@ -763,6 +769,12 @@ services:
       - NAMESPACE=harpia
 
       - AEROSPIKE_HOST=aerospike
+
+      - ENVIRONMENT=dev
+      - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
+      - ALGORITHM=HS256
+      - TOKEN_EXPIRE_MINUTES=5000000
+      - AUTH_MODE=disabled
     deploy:
       restart_policy:
         condition: on-failure
@@ -789,6 +801,12 @@ services:
 
       - STATS_TOPIC=stats-collector
       - KAFKA_SERVERS=kafka:9092
+
+      - ENVIRONMENT=dev
+      - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
+      - ALGORITHM=HS256
+      - TOKEN_EXPIRE_MINUTES=5000000
+      - AUTH_MODE=disabled
     deploy:
       restart_policy:
         condition: on-failure
@@ -810,6 +828,12 @@ services:
       - NAMESPACE=harpia
 
       - AEROSPIKE_HOST=aerospike
+
+      - ENVIRONMENT=dev
+      - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
+      - ALGORITHM=HS256
+      - TOKEN_EXPIRE_MINUTES=5000000
+      - AUTH_MODE=disabled
     deploy:
       restart_policy:
         condition: on-failure
@@ -834,6 +858,12 @@ services:
       - NOTIFY_SERVICE=http://notify-service:8081/notify-service
       - STATS_TOPIC=stats-collector
       - KAFKA_SERVERS=kafka:9092
+
+      - ENVIRONMENT=dev
+      - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
+      - ALGORITHM=HS256
+      - TOKEN_EXPIRE_MINUTES=5000000
+      - AUTH_MODE=disabled
     deploy:
       restart_policy:
         condition: on-failure
@@ -855,6 +885,12 @@ services:
       - NAMESPACE=harpia
 
       - AEROSPIKE_HOST=aerospike
+
+      - ENVIRONMENT=dev
+      - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
+      - ALGORITHM=HS256
+      - TOKEN_EXPIRE_MINUTES=5000000
+      - AUTH_MODE=disabled
     deploy:
       restart_policy:
         condition: on-failure
@@ -880,6 +916,12 @@ services:
       - API_KEY=514519815871199
       - API_SECRET=z48Nqxh68u65ZpaE7-19EGxcUww
       - SERVICE_MODE=mockup
+
+      - ENVIRONMENT=dev
+      - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
+      - ALGORITHM=HS256
+      - TOKEN_EXPIRE_MINUTES=5000000
+      - AUTH_MODE=disabled
     deploy:
       restart_policy:
         condition: on-failure
@@ -901,6 +943,12 @@ services:
       - NAMESPACE=harpia
 
       - NOTIFY_SERVICE=http://notify-service:8081/notify-service
+
+      - ENVIRONMENT=dev
+      - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
+      - ALGORITHM=HS256
+      - TOKEN_EXPIRE_MINUTES=5000000
+      - AUTH_MODE=disabled
     deploy:
       restart_policy:
         condition: on-failure
@@ -925,6 +973,12 @@ services:
       - KYIVSTAR_CLIENT_SECRET=G1K-1YEJFVa4hgxQh.9B._UsRn
       - KYIVSTAR_TOKEN_URL=https://api-gateway.kyivstar.ua/idp/oauth2/token
       - KYIVSTAR_SMS_URL=https://api-gateway.kyivstar.ua/mock/rest/v1beta/sms
+
+      - ENVIRONMENT=dev
+      - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
+      - ALGORITHM=HS256
+      - TOKEN_EXPIRE_MINUTES=5000000
+      - AUTH_MODE=disabled
     deploy:
       restart_policy:
         condition: on-failure
@@ -949,6 +1003,11 @@ services:
 
       - STATS_TOPIC=stats-collector
       - KAFKA_SERVERS=kafka:9092
+      - ENVIRONMENT=dev
+      - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
+      - ALGORITHM=HS256
+      - TOKEN_EXPIRE_MINUTES=5000000
+      - AUTH_MODE=disabled
     deploy:
       restart_policy:
         condition: on-failure
