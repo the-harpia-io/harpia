@@ -4499,7 +4499,7 @@
 													"pm.test(\"Check amount of services\", () => {",
 													"    //parse the response JSON and test three properties",
 													"    const responseJson = pm.response.json();",
-													"    pm.expect(responseJson.location).to.eql('Kiev street 94');",
+													"    pm.expect(responseJson.location).to.eql('Kiev street 93');",
 													"    pm.expect(responseJson.coordinates.latitude).to.eql(49.225930);",
 													"    pm.expect(responseJson.coordinates.longitude).to.eql(28.407920);",
 													"});"
