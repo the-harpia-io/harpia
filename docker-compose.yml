@@ -745,6 +745,7 @@ services:
 
       - AEROSPIKE_HOST=aerospike
       - ORDER_SERVICE=http://order-service:8081/order-service
+      - ASSETS_SERVICE=http://assets-service:8081/assets-service
 
       - ENVIRONMENT=dev
       - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
@@ -831,6 +832,7 @@ services:
       - NAMESPACE=harpia
 
       - AEROSPIKE_HOST=aerospike
+      - ASSETS_SERVICE=http://assets-service:8081/assets-service
 
       - ENVIRONMENT=dev
       - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
