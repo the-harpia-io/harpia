@@ -923,7 +923,7 @@ services:
       - CLOUD_NAME=dvphzoqv8
       - API_KEY=514519815871199
       - API_SECRET=z48Nqxh68u65ZpaE7-19EGxcUww
-      - SERVICE_MODE=mockup
+      - SERVICE_MODE=prod
 
       - ENVIRONMENT=dev
       - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
