@@ -747,9 +747,6 @@ services:
       - ORDER_SERVICE=http://order-service:8081/order-service
       - ASSETS_SERVICE=http://assets-service:8081/assets-service
 
-      - STATS_TOPIC=stats-collector
-      - KAFKA_SERVERS=kafka:9092
-
       - ENVIRONMENT=dev
       - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
       - ALGORITHM=HS256
