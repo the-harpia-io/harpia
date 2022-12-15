@@ -895,6 +895,9 @@ services:
       - URL_PREFIX=/notification-service
       - NAMESPACE=harpia
 
+      - STATS_TOPIC=stats-collector
+      - KAFKA_SERVERS=kafka:9092
+
       - AEROSPIKE_HOST=aerospike
 
       - ENVIRONMENT=dev
