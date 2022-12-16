@@ -833,9 +833,6 @@ services:
       - URL_PREFIX=/employee-service
       - NAMESPACE=harpia
 
-      - STATS_TOPIC=stats-collector
-      - KAFKA_SERVERS=kafka:9092
-
       - AEROSPIKE_HOST=aerospike
       - ASSETS_SERVICE=http://assets-service:8081/assets-service
 
