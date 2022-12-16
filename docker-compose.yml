@@ -107,6 +107,8 @@ services:
       - MEM_GB=1
       - STORAGE_DB=1
       - AGENT_LOG_LEVEL=warn
+      - DATA_IN_MEMORY=true
+      - DEFAULT_TTL=1825d
     deploy:
       restart_policy:
         condition: on-failure
