@@ -1022,20 +1022,20 @@ services:
         delay: 5s
     pull_policy: always
 
-#  postman:
-#    image: kevinniu666/postman-prometheus:1.0.0
-#    environment:
-#      - PORT=9090
-#      - COLLECTION_FILE=/tmp/collection.json
-#      - RUN_INTERVAL=120
-#      - RUN_ITERATIONS=1
-#    volumes:
-#      - './configs/postman:/tmp'
-#    deploy:
-#      restart_policy:
-#        condition: on-failure
-#        delay: 5s
-#    pull_policy: always
+  postman:
+    image: kevinniu666/postman-prometheus:1.0.0
+    environment:
+      - PORT=9090
+      - COLLECTION_FILE=/tmp/collection.json
+      - RUN_INTERVAL=120
+      - RUN_ITERATIONS=1
+    volumes:
+      - './configs/postman:/tmp'
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    pull_policy: always
 
 
 volumes:
