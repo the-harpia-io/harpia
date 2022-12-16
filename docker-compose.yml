@@ -866,8 +866,6 @@ services:
       - AEROSPIKE_HOST=aerospike
       - NOTIFICATION_SERVICE=http://notification-service:8081/notification-service
       - NOTIFY_SERVICE=http://notify-service:8081/notify-service
-      - STATS_TOPIC=stats-collector
-      - KAFKA_SERVERS=kafka:9092
 
       - ENVIRONMENT=dev
       - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
