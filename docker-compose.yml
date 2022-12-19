@@ -835,7 +835,7 @@ services:
 
       - AEROSPIKE_HOST=aerospike
       - ASSETS_SERVICE=http://assets-service:8081/assets-service
-      - PROMO_SERVICE=http://promo-service:8081/promo-service
+      - NOTIFY_SERVICE=http://notify-service:8081/notify-service
 
       - ENVIRONMENT=dev
       - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
