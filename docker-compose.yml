@@ -188,7 +188,7 @@ services:
     pull_policy: always
 
   harp-daemon:
-    image: theharpia/harp-daemon:v2.0.25
+    image: theharpia/harp-daemon:v2.0.26
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -257,6 +257,7 @@ services:
       - SLACK_SERVICE=http://harp-notifications-slack:8081/harp-notifications-slack/api/v1/notifications/slack
 
       - BOTS_SERVICE=http://harp-bots:8081/harp-bots/api/v1/bots
+      - DOCKER_SERVER_IP=${HOST_IP}
     deploy:
       restart_policy:
         condition: on-failure
