@@ -264,7 +264,7 @@ services:
     pull_policy: always
 
   harp-users:
-    image: theharpia/harp-users:v1.0.4
+    image: theharpia/harp-users:v1.0.5
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -292,6 +292,7 @@ services:
       - SMTP_HOST=smtp.gmail.com
       - SMTP_PORT=465
       - BOTS_SERVICE=http://harp-bots:8081/harp-bots/api/v1/bots
+      - DOCKER_SERVER_IP=${HOST_IP}
     deploy:
       restart_policy:
         condition: on-failure
