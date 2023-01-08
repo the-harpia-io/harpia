@@ -78,49 +78,17 @@ scrape_configs:
     static_configs:
       - targets: [ 'kafka-lag-exporter:8000' ]
 
-  - job_name: 'customer-service'
+  - job_name: 'harp-notifications-msteams'
     static_configs:
-         - targets: ['customer-service:8081']
+         - targets: ['harp-notifications-msteams:8081']
 
-  - job_name: 'dictionary-service'
+  - job_name: 'harp-notifications-slack'
     static_configs:
-         - targets: ['dictionary-service:8081']
+         - targets: ['harp-notifications-slack:8081']
 
-  - job_name: 'org-service'
+  - job_name: 'harp-notifications-telegram'
     static_configs:
-         - targets: ['org-service:8081']
-
-  - job_name: 'employee-service'
-    static_configs:
-         - targets: ['employee-service:8081']
-
-  - job_name: 'order-service'
-    static_configs:
-         - targets: ['order-service:8081']
-
-  - job_name: 'notification-service'
-    static_configs:
-         - targets: ['notification-service:8081']
-
-  - job_name: 'assets-service'
-    static_configs:
-         - targets: ['assets-service:8081']
-
-  - job_name: 'promo-service'
-    static_configs:
-         - targets: ['promo-service:8081']
-
-  - job_name: 'notify-service'
-    static_configs:
-         - targets: ['notify-service:8081']
-
-  - job_name: 'stats-service'
-    static_configs:
-      - targets: [ 'stats-service:8081' ]
-
-  - job_name: 'postman'
-    static_configs:
-      - targets: [ 'postman:9090' ]
+         - targets: ['harp-notifications-telegram:8081']
 
   - job_name: 'blackbox-exporter-http'
     metrics_path: /probe
@@ -146,16 +114,10 @@ scrape_configs:
         - http://harp-bots:8081/harp-bots/health
         - http://loki:3100/metrics
         - http://harp-notifications-gmail:8081/harp-notifications-gmail/health
-        - http://customer-service:8081/customer-service/health
-        - http://dictionary-service:8081/dictionary-service/health
-        - http://org-service:8081/org-service/health
-        - http://employee-service:8081/employee-service/health
-        - http://order-service:8081/order-service/health
-        - http://notification-service:8081/notification-service/health
-        - http://assets-service:8081/assets-service/health
-        - http://promo-service:8081/promo-service/health
-        - http://notify-service:8081/notify-service/health
-        - http://stats-service:8081/stats-service/health
+        - http://harp-notifications-msteams:8081/harp-notifications-msteams/health
+        - http://harp-notifications-slack:8081/harp-notifications-slack/health
+        - http://harp-notifications-telegram:8081/harp-notifications-telegram/health
+
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target

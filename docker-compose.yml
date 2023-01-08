@@ -50,11 +50,7 @@ services:
     volumes:
       - './scripts/:/tmp'
     command: >
-        sh -c "/tmp/prepare_database.sh client_db_template.sql 
-        {% if ${ENV}=='prod' %}
-        && /tmp/prepare_database.sh prod_db_template.sql
-        {% endif %}
-        "
+        sh -c "/tmp/prepare_database.sh client_db_template.sql"
 
   zookeeper:
     image: docker.io/bitnami/zookeeper:3.6.3
@@ -113,10 +109,9 @@ services:
       restart_policy:
         condition: on-failure
         delay: 5s
-#      replicas: 3
 
   harp-actions:
-    image: theharpia/harp-actions:v1.0.11
+    image: theharpia/harp-actions:v1.0.14
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -135,6 +130,7 @@ services:
       - BRIDGE_HOST=harp-bridge:8081/harp-bridge
       - SCENARIOS_HOST=http://harp-scenarios:8081/harp-scenarios/api/v1/scenarios
       - USERS_HOST=harp-users:8081/harp-users
+      - TEMPO_URL=http://tempo:4317
     deploy:
       restart_policy:
         condition: on-failure
@@ -142,7 +138,7 @@ services:
     pull_policy: always
 
   harp-collectors:
-    image: theharpia/harp-collectors:v2.0.3
+    image: theharpia/harp-collectors:v2.0.6
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -156,26 +152,7 @@ services:
       - EVENTS_TOPIC=collector-notifications
       - CREATE_NOTIFICATION_ICINGA_TOPIC=create-notifications-icinga
       - CREATE_NOTIFICATION_ZABBIX_TOPIC=create-notifications-zabbix
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-    pull_policy: always
-
-  harp-auto-test:
-    image: theharpia/harp-auto-test:v1.0.7
-    environment:
-      - LOKI_SERVER=loki
-      - LOKI_PORT=3100
-      - POD_NAME=harp-auto-test
-      - SERVICE_NAME=harp-auto-test
-      - SERVICE_NAMESPACE=harpia
-      - URL_PREFIX=/harp-auto-test
-      - NAMESPACE=harpia
-      - LOG_LEVEL=DEBUG
-      - PERIOD_RUN=60
-      - COLLECTOR=http://harp-collectors:8081/harp-collectors
-      - MAX_SCHEDULER_INSTANCES=2
+      - TEMPO_URL=http://tempo:4317
     deploy:
       restart_policy:
         condition: on-failure
@@ -211,7 +188,7 @@ services:
     pull_policy: always
 
   harp-daemon:
-    image: theharpia/harp-daemon:v1.0.4
+    image: theharpia/harp-daemon:v2.0.25
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -246,35 +223,40 @@ services:
       - RESOLVE_NOTIFICATIONS_TOPIC=resolve-notifications
       - ENV_DELETION_TOPIC=environment-update
 
-      - SMTP_ACTIVE=false
+      - SMTP_ACTIVE=true
       - SMTP_HOST=smtp.gmail.com
       - SMTP_PORT=465
 
-      - JIRA_ACTIVE=false
+      - JIRA_ACTIVE=true
       - JIRA_HOST=''
       - JIRA_USER=''
       - JIRA_PASS=''
       - JIRA_TIMEOUT=15
       - JIRA_TEMP_FILES=''
 
-      - SKYPE_ACTIVE=false
-      - SKYPE_USER=notifications@harpia.io
-      - SKYPE_PASS=eXM+X5EcO+
-      - SKYPE_TEMP_FILES=/tmp
-
-      - TELEGRAM_ACTIVE=false
-      - TELEGRAM_TOKEN="714661308:AAFFTL0ausKQ9ptl4Z5LpPAw4Qhj7dOIi6Q"
+      - TELEGRAM_ACTIVE=true
       - TELEGRAM_TEMP_FILES=/tmp
 
-      - TEAMS_ACTIVE=false
+      - TEAMS_ACTIVE=true
 
-      - PAGERDUTY_ACTIVE=false
+      - PAGERDUTY_ACTIVE=true
       - PAGERDUTY_ENDPOINT=https://events.pagerduty.com/v2/enqueue
 
-      - SMS_ACTIVE=false
-      - VOICE_ACTIVE=false
-      - CHECK_ALERT_STATE_FLAPPING=false
+      - SMS_ACTIVE=true
+      - VOICE_ACTIVE=true
+      - CHECK_ALERT_STATE_FLAPPING=true
       - DEEP_REPORTING=true
+      - TEMPO_URL=http://tempo:4317
+      - IGNORE_ALL_MESSAGES=false
+
+      - GMAIL_SERVICE=http://harp-notifications-gmail:8081/harp-notifications-gmail/api/v1/notifications/gmail
+      - SMS_SERVICE=http://harp-notifications-sms:8081/harp-notifications-sms/api/v1/notifications/sms
+      - VOICE_SERVICE=http://harp-notifications-voice:8081/harp-notifications-voice/api/v1/notifications/voice
+      - TEAMS_SERVICE=http://harp-notifications-msteams:8081/harp-notifications-msteams/api/v1/notifications/teams
+      - TELEGRAM_SERVICE=http://harp-notifications-telegram:8081/harp-notifications-telegram/api/v1/notifications/telegram
+      - SLACK_SERVICE=http://harp-notifications-slack:8081/harp-notifications-slack/api/v1/notifications/slack
+
+      - BOTS_SERVICE=http://harp-bots:8081/harp-bots/api/v1/bots
     deploy:
       restart_policy:
         condition: on-failure
@@ -282,7 +264,7 @@ services:
     pull_policy: always
 
   harp-users:
-    image: theharpia/harp-users:v1.0.1
+    image: theharpia/harp-users:v1.0.4
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -309,8 +291,7 @@ services:
       - TOKEN_EXPIRE_HOURS=720
       - SMTP_HOST=smtp.gmail.com
       - SMTP_PORT=465
-      - SMTP_USER=harp.notifications@gmail.com
-      - SMTP_PASS=lekhsbkjyzbdrqer
+      - BOTS_SERVICE=http://harp-bots:8081/harp-bots/api/v1/bots
     deploy:
       restart_policy:
         condition: on-failure
@@ -341,7 +322,7 @@ services:
     pull_policy: always
 
   harp-aggregator:
-    image: theharpia/harp-aggregator:v1.0.0
+    image: theharpia/harp-aggregator:v1.0.5
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -395,7 +376,7 @@ services:
     pull_policy: always
 
   harp-scenarios:
-    image: theharpia/harp-scenarios:v1.0.0
+    image: theharpia/harp-scenarios:v1.0.1
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -436,7 +417,7 @@ services:
     pull_policy: always
 
   harp-alert-decorator:
-    image: theharpia/harp-alert-decorator:v1.0.0
+    image: theharpia/harp-alert-decorator:v2.0.3
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -464,15 +445,13 @@ services:
     pull_policy: always
 
   harp-ui:
-    image: theharpia/harp-ui:v1.1.0
+    image: theharpia/harp-ui:v1.1.15
     environment:
       - POD_NAME=harp-ui
-      - DOMAIN=https://playground.harpia.io
-      - GRAFANA_REPORTS=https://playground.harpia.io/grafana
+      - DOMAIN=http://${HOST_IP}
+      - GRAFANA_REPORTS=http://${HOST_IP}/grafana
       - NAMESPACE=harpia
       - SHOW_SIDE_PANEL=true
-      - DEMO_EMAIL=harp-demo@harpia.io
-      - DEMO_PASSWORD=Harp-p1@yground
     deploy:
       restart_policy:
         condition: on-failure
@@ -526,11 +505,12 @@ services:
     pull_policy: always
 
   harp-notifications-voice:
-    image: theharpia/harp-notifications-voice:v1.0.0
+    image: theharpia/harp-notifications-voice:v1.0.1
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
       - LOG_LEVEL=DEBUG
+      - TEMPO_URL=http://tempo:4317
 
       - POD_NAME=harp-notifications-voice
       - SERVICE_NAME=harp-notifications-voice
@@ -546,11 +526,12 @@ services:
     pull_policy: always
 
   harp-notifications-sms:
-    image: theharpia/harp-notifications-sms:v1.0.0
+    image: theharpia/harp-notifications-sms:v1.0.1
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
       - LOG_LEVEL=DEBUG
+      - TEMPO_URL=http://tempo:4317
 
       - POD_NAME=harp-notifications-sms
       - SERVICE_NAME=harp-notifications-sms
@@ -566,7 +547,7 @@ services:
     pull_policy: always
 
   harp-notifications-gmail:
-    image: theharpia/harp-notifications-gmail:v1.0.0
+    image: theharpia/harp-notifications-gmail:v1.0.4
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -581,6 +562,67 @@ services:
       - BOTS_SERVICE=http://harp-bots:8081/harp-bots/api/v1/bots
       - GMAIL_HOST=smtp.gmail.com
       - GMAIL_PORT=465
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    pull_policy: always
+
+  harp-notifications-telegram:
+    image: theharpia/harp-notifications-telegram:v1.0.4
+    environment:
+      - LOKI_SERVER=loki
+      - LOKI_PORT=3100
+      - LOG_LEVEL=DEBUG
+      - TEMPO_URL=http://tempo:4317
+
+      - POD_NAME=harp-notifications-telegram
+      - SERVICE_NAME=harp-notifications-telegram
+      - SERVICE_NAMESPACE=harpia
+      - URL_PREFIX=/harp-notifications-telegram
+      - NAMESPACE=harpia
+
+      - BOTS_SERVICE=http://harp-bots:8081/harp-bots/api/v1/bots
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    pull_policy: always
+
+  harp-notifications-slack:
+    image: theharpia/harp-notifications-slack:v1.0.5
+    environment:
+      - LOKI_SERVER=loki
+      - LOKI_PORT=3100
+      - LOG_LEVEL=DEBUG
+      - TEMPO_URL=http://tempo:4317
+
+      - POD_NAME=harp-notifications-slack
+      - SERVICE_NAME=harp-notifications-slack
+      - SERVICE_NAMESPACE=harpia
+      - URL_PREFIX=/harp-notifications-slack
+      - NAMESPACE=harpia
+
+      - BOTS_SERVICE=http://harp-bots:8081/harp-bots/api/v1/bots
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    pull_policy: always
+
+  harp-notifications-msteams:
+    image: theharpia/harp-notifications-msteams:v1.0.4
+    environment:
+      - LOKI_SERVER=loki
+      - LOKI_PORT=3100
+      - LOG_LEVEL=DEBUG
+      - TEMPO_URL=http://tempo:4317
+
+      - POD_NAME=harp-notifications-msteams
+      - SERVICE_NAME=harp-notifications-msteams
+      - SERVICE_NAMESPACE=harpia
+      - URL_PREFIX=/harp-notifications-msteams
+      - NAMESPACE=harpia
     deploy:
       restart_policy:
         condition: on-failure
@@ -730,313 +772,6 @@ services:
       restart_policy:
         condition: on-failure
         delay: 5s
-
-  customer-service:
-    image: theharpia/customer-service:v1.0.0
-    environment:
-      - LOKI_SERVER=loki
-      - LOKI_PORT=3100
-      - LOG_LEVEL=DEBUG
-      - TEMPO_URL=http://tempo:4317
-
-      - POD_NAME=customer-service
-      - SERVICE_NAME=customer-service
-      - SERVICE_NAMESPACE=harpia
-      - URL_PREFIX=/customer-service
-      - NAMESPACE=harpia
-
-      - AEROSPIKE_HOST=aerospike
-      - ORDER_SERVICE=http://order-service:8081/order-service
-      - ASSETS_SERVICE=http://assets-service:8081/assets-service
-
-      - ENVIRONMENT=dev
-      - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
-      - ALGORITHM=HS256
-      - TOKEN_EXPIRE_MINUTES=5000000
-      - AUTH_MODE=disabled
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-    pull_policy: always
-
-  dictionary-service:
-    image: theharpia/dictionary-service:v1.0.0
-    environment:
-      - LOKI_SERVER=loki
-      - LOKI_PORT=3100
-      - LOG_LEVEL=DEBUG
-      - TEMPO_URL=http://tempo:4317
-
-      - POD_NAME=dictionary-service
-      - SERVICE_NAME=dictionary-service
-      - SERVICE_NAMESPACE=harpia
-      - URL_PREFIX=/dictionary-service
-      - NAMESPACE=harpia
-
-      - AEROSPIKE_HOST=aerospike
-
-      - ENVIRONMENT=dev
-      - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
-      - ALGORITHM=HS256
-      - TOKEN_EXPIRE_MINUTES=5000000
-      - AUTH_MODE=disabled
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-    pull_policy: always
-
-  org-service:
-    image: theharpia/org-service:v1.0.0
-    environment:
-      - LOKI_SERVER=loki
-      - LOKI_PORT=3100
-      - LOG_LEVEL=DEBUG
-      - TEMPO_URL=http://tempo:4317
-
-      - POD_NAME=org-service
-      - SERVICE_NAME=org-service
-      - SERVICE_NAMESPACE=harpia
-      - URL_PREFIX=/org-service
-      - NAMESPACE=harpia
-
-      - AEROSPIKE_HOST=aerospike
-      - ASSETS_SERVICE=http://assets-service:8081/assets-service
-      - VM_URL_EXPORT=http://victoriametrics:8428/prometheus/api/v1/query_range
-
-      - STATS_TOPIC=stats-collector
-      - KAFKA_SERVERS=kafka:9092
-
-      - ENVIRONMENT=dev
-      - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
-      - ALGORITHM=HS256
-      - TOKEN_EXPIRE_MINUTES=5000000
-      - AUTH_MODE=disabled
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-    pull_policy: always
-
-  employee-service:
-    image: theharpia/employee-service:v1.0.0
-    environment:
-      - LOKI_SERVER=loki
-      - LOKI_PORT=3100
-      - LOG_LEVEL=DEBUG
-      - TEMPO_URL=http://tempo:4317
-
-      - POD_NAME=employee-service
-      - SERVICE_NAME=employee-service
-      - SERVICE_NAMESPACE=harpia
-      - URL_PREFIX=/employee-service
-      - NAMESPACE=harpia
-
-      - AEROSPIKE_HOST=aerospike
-      - ASSETS_SERVICE=http://assets-service:8081/assets-service
-      - NOTIFY_SERVICE=http://notify-service:8081/notify-service
-
-      - ENVIRONMENT=dev
-      - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
-      - ALGORITHM=HS256
-      - TOKEN_EXPIRE_MINUTES=5000000
-      - AUTH_MODE=disabled
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-    pull_policy: always
-
-  order-service:
-    image: theharpia/order-service:v1.0.0
-    environment:
-      - LOKI_SERVER=loki
-      - LOKI_PORT=3100
-      - LOG_LEVEL=DEBUG
-      - TEMPO_URL=http://tempo:4317
-
-      - POD_NAME=order-service
-      - SERVICE_NAME=order-service
-      - SERVICE_NAMESPACE=harpia
-      - URL_PREFIX=/order-service
-      - NAMESPACE=harpia
-      - AEROSPIKE_HOST=aerospike
-      - NOTIFICATION_SERVICE=http://notification-service:8081/notification-service
-      - NOTIFY_SERVICE=http://notify-service:8081/notify-service
-
-      - ENVIRONMENT=dev
-      - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
-      - ALGORITHM=HS256
-      - TOKEN_EXPIRE_MINUTES=5000000
-      - AUTH_MODE=disabled
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-    pull_policy: always
-
-  notification-service:
-    image: theharpia/notification-service:v1.0.0
-    environment:
-      - LOKI_SERVER=loki
-      - LOKI_PORT=3100
-      - LOG_LEVEL=DEBUG
-      - TEMPO_URL=http://tempo:4317
-
-      - POD_NAME=notification-service
-      - SERVICE_NAME=notification-service
-      - SERVICE_NAMESPACE=harpia
-      - URL_PREFIX=/notification-service
-      - NAMESPACE=harpia
-
-      - STATS_TOPIC=stats-collector
-      - KAFKA_SERVERS=kafka:9092
-
-      - AEROSPIKE_HOST=aerospike
-
-      - ENVIRONMENT=dev
-      - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
-      - ALGORITHM=HS256
-      - TOKEN_EXPIRE_MINUTES=5000000
-      - AUTH_MODE=disabled
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-    pull_policy: always
-
-
-  assets-service:
-    image: theharpia/assets-service:v1.0.0
-    environment:
-      - LOKI_SERVER=loki
-      - LOKI_PORT=3100
-      - LOG_LEVEL=DEBUG
-      - TEMPO_URL=http://tempo:4317
-
-      - POD_NAME=assets-service
-      - SERVICE_NAME=assets-service
-      - SERVICE_NAMESPACE=harpia
-      - URL_PREFIX=/assets-service
-      - NAMESPACE=harpia
-
-      - CLOUD_NAME=dvphzoqv8
-      - API_KEY=514519815871199
-      - API_SECRET=z48Nqxh68u65ZpaE7-19EGxcUww
-      - SERVICE_MODE=mockup # mockup
-
-      - ENVIRONMENT=dev
-      - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
-      - ALGORITHM=HS256
-      - TOKEN_EXPIRE_MINUTES=5000000
-      - AUTH_MODE=disabled
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-    pull_policy: always
-
-  promo-service:
-    image: theharpia/promo-service:v1.0.0
-    environment:
-      - LOKI_SERVER=loki
-      - LOKI_PORT=3100
-      - LOG_LEVEL=DEBUG
-      - TEMPO_URL=http://tempo:4317
-
-      - POD_NAME=promo-service
-      - SERVICE_NAME=promo-service
-      - SERVICE_NAMESPACE=harpia
-      - URL_PREFIX=/promo-service
-      - NAMESPACE=harpia
-
-      - NOTIFY_SERVICE=http://notify-service:8081/notify-service
-
-      - ENVIRONMENT=dev
-      - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
-      - ALGORITHM=HS256
-      - TOKEN_EXPIRE_MINUTES=5000000
-      - AUTH_MODE=disabled
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-    pull_policy: always
-
-  notify-service:
-    image: theharpia/notify-service:v1.0.0
-    environment:
-      - LOKI_SERVER=loki
-      - LOKI_PORT=3100
-      - LOG_LEVEL=DEBUG
-      - TEMPO_URL=http://tempo:4317
-
-      - POD_NAME=notify-service
-      - SERVICE_NAME=notify-service
-      - SERVICE_NAMESPACE=harpia
-      - URL_PREFIX=/notify-service
-      - NAMESPACE=harpia
-
-      - KYIVSTAR_CLIENT_ID=e5d6e686-df70-4e49-86d0-929fa18ce36a
-      - KYIVSTAR_CLIENT_SECRET=G1K-1YEJFVa4hgxQh.9B._UsRn
-      - KYIVSTAR_TOKEN_URL=https://api-gateway.kyivstar.ua/idp/oauth2/token
-      - KYIVSTAR_SMS_URL=https://api-gateway.kyivstar.ua/mock/rest/v1beta/sms
-
-      - ENVIRONMENT=dev
-      - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
-      - ALGORITHM=HS256
-      - TOKEN_EXPIRE_MINUTES=5000000
-      - AUTH_MODE=disabled
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-    pull_policy: always
-
-  stats-service:
-    image: theharpia/stats-service:v1.0.0
-    environment:
-      - LOKI_SERVER=loki
-      - LOKI_PORT=3100
-      - LOG_LEVEL=DEBUG
-      - TEMPO_URL=http://tempo:4317
-
-      - POD_NAME=stats-service
-      - SERVICE_NAME=stats-service
-      - SERVICE_NAMESPACE=harpia
-      - URL_PREFIX=/stats-service
-      - NAMESPACE=harpia
-
-      - VM_URL_EXPORT=http://victoriametrics:8428/api/v1/import/prometheus
-
-      - STATS_TOPIC=stats-collector
-      - KAFKA_SERVERS=kafka:9092
-      - ENVIRONMENT=dev
-      - SECRET_KEY=kXq0Gq48bRpDL2PrWdj0GKiJzunHLfQJ
-      - ALGORITHM=HS256
-      - TOKEN_EXPIRE_MINUTES=5000000
-      - AUTH_MODE=disabled
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-    pull_policy: always
-
-#  postman:
-#    image: kevinniu666/postman-prometheus:1.0.0
-#    environment:
-#      - PORT=9090
-#      - COLLECTION_FILE=/tmp/collection.json
-#      - RUN_INTERVAL=120
-#      - RUN_ITERATIONS=1
-#    volumes:
-#      - './configs/postman:/tmp'
-#    deploy:
-#      restart_policy:
-#        condition: on-failure
-#        delay: 5s
-#    pull_policy: always
 
 
 volumes:
