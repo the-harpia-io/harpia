@@ -1,5 +1,5 @@
 echo "Wait for DB"
-sleep 10
+sleep 60
 echo "Start preparing DB"
 
 RESULT=`mysqlshow -h mariadb --user=harpia --password=harpia harpia_db| grep -v Wildcard | grep -o harpia_db`
