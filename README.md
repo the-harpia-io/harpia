@@ -6,4 +6,7 @@
 
 3. git clone https://github.com/the-harpia-io/harpia.git
 4. cd harpia
-5. HOST_IP=<SERVER_IP_ADDRESS> docker compose up -d && sleep 60 && docker restart harpia-nginx-1
+5. HOST_IP=<SERVER_IP_ADDRESS> docker compose up -d && sleep 60 && docker restart harpia-harp-filters-1 && docker restart harpia-nginx-1
+6. Visit your Portal: http://<SERVER_IP_ADDRESS>
+   - Login: admin
+   - Password: admin
