@@ -112,7 +112,7 @@ services:
 
   harp-actions:
     image: theharpia/harp-actions:v1.0.14
-    command: ["/bin/sh", "-c", "sleep 60"]
+    restart: on-failure
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -140,7 +140,7 @@ services:
 
   harp-collectors:
     image: theharpia/harp-collectors:v2.0.6
-    command: ["/bin/sh", "-c", "sleep 60"]
+    restart: on-failure
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -163,7 +163,7 @@ services:
 
   harp-environments:
     image: theharpia/harp-environments:v1.0.0
-    command: ["/bin/sh", "-c", "sleep 60"]
+    restart: on-failure
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -192,7 +192,7 @@ services:
 
   harp-daemon:
     image: theharpia/harp-daemon:v2.0.26
-    command: ["/bin/sh", "-c", "sleep 60"]
+    restart: on-failure
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -270,7 +270,7 @@ services:
 
   harp-users:
     image: theharpia/harp-users:v1.0.5
-    command: ["/bin/sh", "-c", "sleep 60"]
+    restart: on-failure
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -307,7 +307,7 @@ services:
 
   harp-licenses:
     image: theharpia/harp-licenses:v1.0.0
-    command: ["/bin/sh", "-c", "sleep 60"]
+    restart: on-failure
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -331,7 +331,7 @@ services:
 
   harp-aggregator:
     image: theharpia/harp-aggregator:v1.0.5
-    command: ["/bin/sh", "-c", "sleep 60"]
+    restart: on-failure
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -362,7 +362,7 @@ services:
 
   harp-bridge:
     image: theharpia/harp-bridge:v1.0.0
-    command: ["/bin/sh", "-c", "sleep 60"]
+    restart: on-failure
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -387,7 +387,7 @@ services:
 
   harp-scenarios:
     image: theharpia/harp-scenarios:v1.0.1
-    command: ["/bin/sh", "-c", "sleep 60"]
+    restart: on-failure
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -411,7 +411,7 @@ services:
 
   harp-clientevents:
     image: theharpia/harp-clientevents:v1.0.0
-    command: ["/bin/sh", "-c", "sleep 60"]
+    restart: on-failure
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -430,7 +430,7 @@ services:
 
   harp-alert-decorator:
     image: theharpia/harp-alert-decorator:v2.0.3
-    command: ["/bin/sh", "-c", "sleep 60"]
+    restart: on-failure
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -459,7 +459,7 @@ services:
 
   harp-ui:
     image: theharpia/harp-ui:v1.1.15
-    command: ["/bin/sh", "-c", "sleep 60"]
+    restart: on-failure
     environment:
       - POD_NAME=harp-ui
       - DOMAIN=http://${HOST_IP}
@@ -474,7 +474,7 @@ services:
 
   harp-integrations:
     image: theharpia/harp-integrations:v1.0.0
-    command: ["/bin/sh", "-c", "sleep 60"]
+    restart: on-failure
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -498,7 +498,7 @@ services:
 
   harp-bots:
     image: theharpia/harp-bots:v1.0.3
-    command: ["/bin/sh", "-c", "sleep 60"]
+    restart: on-failure
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -522,7 +522,7 @@ services:
 
   harp-notifications-voice:
     image: theharpia/harp-notifications-voice:v1.0.1
-    command: ["/bin/sh", "-c", "sleep 60"]
+    restart: on-failure
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -544,7 +544,7 @@ services:
 
   harp-notifications-sms:
     image: theharpia/harp-notifications-sms:v1.0.1
-    command: ["/bin/sh", "-c", "sleep 60"]
+    restart: on-failure
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -566,7 +566,7 @@ services:
 
   harp-notifications-gmail:
     image: theharpia/harp-notifications-gmail:v1.0.4
-    command: ["/bin/sh", "-c", "sleep 60"]
+    restart: on-failure
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -589,7 +589,7 @@ services:
 
   harp-notifications-telegram:
     image: theharpia/harp-notifications-telegram:v1.0.4
-    command: ["/bin/sh", "-c", "sleep 60"]
+    restart: on-failure
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -611,7 +611,7 @@ services:
 
   harp-notifications-slack:
     image: theharpia/harp-notifications-slack:v1.0.5
-    command: ["/bin/sh", "-c", "sleep 60"]
+    restart: on-failure
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -633,7 +633,7 @@ services:
 
   harp-notifications-msteams:
     image: theharpia/harp-notifications-msteams:v1.0.4
-    command: ["/bin/sh", "-c", "sleep 60"]
+    restart: on-failure
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
@@ -653,7 +653,7 @@ services:
 
   harp-filters:
     image: theharpia/harp-filters:v1.0.0
-    command: ["/bin/sh", "-c", "sleep 60"]
+    restart: on-failure
     environment:
       - LOKI_SERVER=loki
       - LOKI_PORT=3100
